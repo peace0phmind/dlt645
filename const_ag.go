@@ -39,6 +39,119 @@ const (
 )
 
 const (
+	// DICTotalActiveEnergy is a DIC of type TotalActiveEnergy.
+	// 电能量数据标识
+	DICTotalActiveEnergy DIC = 0 // 组合有功总电能
+	// DICPositiveTotalActiveEnergy is a DIC of type PositiveTotalActiveEnergy.
+	DICPositiveTotalActiveEnergy DIC = 65536 // 正向有功总电能
+	// DICNegativeTotalActiveEnergy is a DIC of type NegativeTotalActiveEnergy.
+	DICNegativeTotalActiveEnergy DIC = 131072 // 反向有功总电能
+	// DICTotalReactiveEnergy1 is a DIC of type TotalReactiveEnergy1.
+	DICTotalReactiveEnergy1 DIC = 196608 // 组合无功1总电能
+	// DICTotalReactiveEnergy2 is a DIC of type TotalReactiveEnergy2.
+	DICTotalReactiveEnergy2 DIC = 262144 // 组合无功2总电能
+	// DICFirstQuadrantReactiveEnergy is a DIC of type FirstQuadrantReactiveEnergy.
+	DICFirstQuadrantReactiveEnergy DIC = 327680 // 第一象限无功电能
+	// DICSecondQuadrantReactiveEnergy is a DIC of type SecondQuadrantReactiveEnergy.
+	DICSecondQuadrantReactiveEnergy DIC = 393216 // 第二象限无功电能
+	// DICThirdQuadrantReactiveEnergy is a DIC of type ThirdQuadrantReactiveEnergy.
+	DICThirdQuadrantReactiveEnergy DIC = 458752 // 第三象限无功电能
+	// DICFourthQuadrantReactiveEnergy is a DIC of type FourthQuadrantReactiveEnergy.
+	DICFourthQuadrantReactiveEnergy DIC = 524288 // 第四象限无功电能
+	// DICPositiveTotalApparentEnergy is a DIC of type PositiveTotalApparentEnergy.
+	DICPositiveTotalApparentEnergy DIC = 589824 // 正向视在总电能
+	// DICNegativeTotalApparentEnergy is a DIC of type NegativeTotalApparentEnergy.
+	DICNegativeTotalApparentEnergy DIC = 655360 // 反向视在总电能
+	// DICAssociatedTotalElectricEnergy is a DIC of type AssociatedTotalElectricEnergy.
+	DICAssociatedTotalElectricEnergy DIC = 8388608 // 关联总电能
+	// DICPhaseAvoltage is a DIC of type PhaseAVoltage.
+	// 变量数据标识
+	DICPhaseAvoltage DIC = 33620224 // A相电压
+	// DICPhaseBvoltage is a DIC of type PhaseBVoltage.
+	DICPhaseBvoltage DIC = 33620480 // B相电压
+	// DICPhaseCvoltage is a DIC of type PhaseCVoltage.
+	DICPhaseCvoltage DIC = 33620736 // C相电压
+	// DICVoltage is a DIC of type Voltage.
+	DICVoltage DIC = 33685248 // 电压数据块
+	// DICPhaseAcurrent is a DIC of type PhaseACurrent.
+	DICPhaseAcurrent DIC = 33685760 // A相电流
+	// DICPhaseBcurrent is a DIC of type PhaseBCurrent.
+	DICPhaseBcurrent DIC = 33686016 // B相电流
+	// DICPhaseCcurrent is a DIC of type PhaseCCurrent.
+	DICPhaseCcurrent DIC = 33686272 // C相电流
+	// DICCurrent is a DIC of type Current.
+	DICCurrent DIC = 33750784 // 电流数据块
+	// DICTotalActivePower is a DIC of type TotalActivePower.
+	DICTotalActivePower DIC = 33751040 // 总有功功率
+	// DICPhaseAactivePower is a DIC of type PhaseAActivePower.
+	DICPhaseAactivePower DIC = 33751296 // A相有功功率
+	// DICPhaseBactivePower is a DIC of type PhaseBActivePower.
+	DICPhaseBactivePower DIC = 33751552 // B相有功功率
+	// DICPhaseCactivePower is a DIC of type PhaseCActivePower.
+	DICPhaseCactivePower DIC = 33751808 // C相有功功率
+	// DICActivePower is a DIC of type ActivePower.
+	DICActivePower DIC = 33816320 // 有功功率数据块
+	// DICTotalReactivePower is a DIC of type TotalReactivePower.
+	DICTotalReactivePower DIC = 33816576 // 总无功功率
+	// DICPhaseAreactivePower is a DIC of type PhaseAReactivePower.
+	DICPhaseAreactivePower DIC = 33816832 // A相无功功率
+	// DICPhaseBreactivePower is a DIC of type PhaseBReactivePower.
+	DICPhaseBreactivePower DIC = 33817088 // B相无功功率
+	// DICPhaseCreactivePower is a DIC of type PhaseCReactivePower.
+	DICPhaseCreactivePower DIC = 33817344 // C相无功功率
+	// DICReactivePower is a DIC of type ReactivePower.
+	DICReactivePower DIC = 33881856 // 无功功率数据块
+	// DICTotalApparentPower is a DIC of type TotalApparentPower.
+	DICTotalApparentPower DIC = 33882112 // 总视在功率
+	// DICPhaseAapparentPower is a DIC of type PhaseAApparentPower.
+	DICPhaseAapparentPower DIC = 33882368 // A相视在功率
+	// DICPhaseBapparentPower is a DIC of type PhaseBApparentPower.
+	DICPhaseBapparentPower DIC = 33882624 // B相视在功率
+	// DICPhaseCapparentPower is a DIC of type PhaseCApparentPower.
+	DICPhaseCapparentPower DIC = 33882880 // C相视在功率
+	// DICApparentPower is a DIC of type ApparentPower.
+	DICApparentPower DIC = 33947392 // 视在功率数据块
+	// DICTotalPowerFactor is a DIC of type TotalPowerFactor.
+	DICTotalPowerFactor DIC = 33947648 // 总功率因素
+	// DICPhaseApowerFactor is a DIC of type PhaseAPowerFactor.
+	DICPhaseApowerFactor DIC = 33947904 // A相功率因素
+	// DICPhaseBpowerFactor is a DIC of type PhaseBPowerFactor.
+	DICPhaseBpowerFactor DIC = 33948160 // B相功率因素
+	// DICPhaseCpowerFactor is a DIC of type PhaseCPowerFactor.
+	DICPhaseCpowerFactor DIC = 33948416 // C相功率因素
+	// DICPowerFactor is a DIC of type PowerFactor.
+	DICPowerFactor DIC = 34012928 // 功率因素数据块
+	// DICAblineVoltage is a DIC of type ABLineVoltage.
+	DICAblineVoltage DIC = 34341120 // AB线电压
+	// DICBclineVoltage is a DIC of type BCLineVoltage.
+	DICBclineVoltage DIC = 34341376 // BC线电压
+	// DICCalineVoltage is a DIC of type CALineVoltage.
+	DICCalineVoltage DIC = 34341632 // CA线电压
+	// DICLineVoltage is a DIC of type LineVoltage.
+	DICLineVoltage DIC = 34406144 // 线电压数据块
+	// DICFrequency is a DIC of type Frequency.
+	DICFrequency DIC = 41943042 // 频率
+	// DICTotalOverCurrentCount is a DIC of type TotalOverCurrentCount.
+	// 事件记录数据标识
+	DICTotalOverCurrentCount DIC = 51118080 // 过流总次数，总时间
+	// DICTotalMeterResetCount is a DIC of type TotalMeterResetCount.
+	DICTotalMeterResetCount DIC = 53477632 // 电表清零总次数
+	// DICMeterResetRecord is a DIC of type MeterResetRecord.
+	DICMeterResetRecord DIC = 53477633 // 电表清零记录, 这个返回的是一个对象的结构体
+	// DICDateTime is a DIC of type DateTime.
+	// 参变量数据标识
+	DICDateTime DIC = 67109121 // 年月日星期
+	// DICTime is a DIC of type Time.
+	DICTime DIC = 67109122 // 时分秒
+	// DICAssetManagementCode is a DIC of type AssetManagementCode.
+	DICAssetManagementCode DIC = 67109891 // 资产管理编码
+	// DICActiveConstant is a DIC of type ActiveConstant.
+	DICActiveConstant DIC = 67109897 // 电表有功常数
+	// DICReactiveConstant is a DIC of type ReactiveConstant.
+	DICReactiveConstant DIC = 67109898 // 电表无功常数
+)
+
+const (
 	// ErrorCodeRate is an ErrorCode of type RATE.
 	ErrorCodeRate ErrorCode = 64 // 费率数超
 	// ErrorCodeDay is an ErrorCode of type DAY.
@@ -153,6 +266,539 @@ func ParseCCode(value string) (CCode, error) {
 		return x, nil
 	}
 	return CCode(0), fmt.Errorf("%s is %w", value, ErrInvalidCCode)
+}
+
+var ErrInvalidDIC = errors.New("not a valid DIC")
+
+var _DICName = "TotalActiveEnergyPositiveTotalActiveEnergyNegativeTotalActiveEnergyTotalReactiveEnergy1TotalReactiveEnergy2FirstQuadrantReactiveEnergySecondQuadrantReactiveEnergyThirdQuadrantReactiveEnergyFourthQuadrantReactiveEnergyPositiveTotalApparentEnergyNegativeTotalApparentEnergyAssociatedTotalElectricEnergyPhaseAVoltagePhaseBVoltagePhaseCVoltageVoltagePhaseACurrentPhaseBCurrentPhaseCCurrentCurrentTotalActivePowerPhaseAActivePowerPhaseBActivePowerPhaseCActivePowerActivePowerTotalReactivePowerPhaseAReactivePowerPhaseBReactivePowerPhaseCReactivePowerReactivePowerTotalApparentPowerPhaseAApparentPowerPhaseBApparentPowerPhaseCApparentPowerApparentPowerTotalPowerFactorPhaseAPowerFactorPhaseBPowerFactorPhaseCPowerFactorPowerFactorABLineVoltageBCLineVoltageCALineVoltageLineVoltageFrequencyTotalOverCurrentCountTotalMeterResetCountMeterResetRecordDateTimeTimeAssetManagementCodeActiveConstantReactiveConstant"
+
+var _DICMapName = map[DIC]string{
+	DICTotalActiveEnergy:             _DICName[0:17],
+	DICPositiveTotalActiveEnergy:     _DICName[17:42],
+	DICNegativeTotalActiveEnergy:     _DICName[42:67],
+	DICTotalReactiveEnergy1:          _DICName[67:87],
+	DICTotalReactiveEnergy2:          _DICName[87:107],
+	DICFirstQuadrantReactiveEnergy:   _DICName[107:134],
+	DICSecondQuadrantReactiveEnergy:  _DICName[134:162],
+	DICThirdQuadrantReactiveEnergy:   _DICName[162:189],
+	DICFourthQuadrantReactiveEnergy:  _DICName[189:217],
+	DICPositiveTotalApparentEnergy:   _DICName[217:244],
+	DICNegativeTotalApparentEnergy:   _DICName[244:271],
+	DICAssociatedTotalElectricEnergy: _DICName[271:300],
+	DICPhaseAvoltage:                 _DICName[300:313],
+	DICPhaseBvoltage:                 _DICName[313:326],
+	DICPhaseCvoltage:                 _DICName[326:339],
+	DICVoltage:                       _DICName[339:346],
+	DICPhaseAcurrent:                 _DICName[346:359],
+	DICPhaseBcurrent:                 _DICName[359:372],
+	DICPhaseCcurrent:                 _DICName[372:385],
+	DICCurrent:                       _DICName[385:392],
+	DICTotalActivePower:              _DICName[392:408],
+	DICPhaseAactivePower:             _DICName[408:425],
+	DICPhaseBactivePower:             _DICName[425:442],
+	DICPhaseCactivePower:             _DICName[442:459],
+	DICActivePower:                   _DICName[459:470],
+	DICTotalReactivePower:            _DICName[470:488],
+	DICPhaseAreactivePower:           _DICName[488:507],
+	DICPhaseBreactivePower:           _DICName[507:526],
+	DICPhaseCreactivePower:           _DICName[526:545],
+	DICReactivePower:                 _DICName[545:558],
+	DICTotalApparentPower:            _DICName[558:576],
+	DICPhaseAapparentPower:           _DICName[576:595],
+	DICPhaseBapparentPower:           _DICName[595:614],
+	DICPhaseCapparentPower:           _DICName[614:633],
+	DICApparentPower:                 _DICName[633:646],
+	DICTotalPowerFactor:              _DICName[646:662],
+	DICPhaseApowerFactor:             _DICName[662:679],
+	DICPhaseBpowerFactor:             _DICName[679:696],
+	DICPhaseCpowerFactor:             _DICName[696:713],
+	DICPowerFactor:                   _DICName[713:724],
+	DICAblineVoltage:                 _DICName[724:737],
+	DICBclineVoltage:                 _DICName[737:750],
+	DICCalineVoltage:                 _DICName[750:763],
+	DICLineVoltage:                   _DICName[763:774],
+	DICFrequency:                     _DICName[774:783],
+	DICTotalOverCurrentCount:         _DICName[783:804],
+	DICTotalMeterResetCount:          _DICName[804:824],
+	DICMeterResetRecord:              _DICName[824:840],
+	DICDateTime:                      _DICName[840:848],
+	DICTime:                          _DICName[848:852],
+	DICAssetManagementCode:           _DICName[852:871],
+	DICActiveConstant:                _DICName[871:885],
+	DICReactiveConstant:              _DICName[885:901],
+}
+
+// Name is the attribute of DIC.
+func (x DIC) Name() string {
+	if v, ok := _DICMapName[x]; ok {
+		return v
+	}
+	return fmt.Sprintf("DIC(%d).Name", x)
+}
+
+var _DICMapOld = map[DIC]uint{
+	DICTotalActiveEnergy:             4294967295,
+	DICPositiveTotalActiveEnergy:     4294967295,
+	DICNegativeTotalActiveEnergy:     4294967295,
+	DICTotalReactiveEnergy1:          4294967295,
+	DICTotalReactiveEnergy2:          4294967295,
+	DICFirstQuadrantReactiveEnergy:   4294967295,
+	DICSecondQuadrantReactiveEnergy:  4294967295,
+	DICThirdQuadrantReactiveEnergy:   4294967295,
+	DICFourthQuadrantReactiveEnergy:  4294967295,
+	DICPositiveTotalApparentEnergy:   4294967295,
+	DICNegativeTotalApparentEnergy:   4294967295,
+	DICAssociatedTotalElectricEnergy: 4294967295,
+	DICPhaseAvoltage:                 46609,
+	DICPhaseBvoltage:                 46610,
+	DICPhaseCvoltage:                 46611,
+	DICVoltage:                       4294967295,
+	DICPhaseAcurrent:                 46625,
+	DICPhaseBcurrent:                 46626,
+	DICPhaseCcurrent:                 46627,
+	DICCurrent:                       4294967295,
+	DICTotalActivePower:              46640,
+	DICPhaseAactivePower:             46641,
+	DICPhaseBactivePower:             46642,
+	DICPhaseCactivePower:             46643,
+	DICActivePower:                   4294967295,
+	DICTotalReactivePower:            46656,
+	DICPhaseAreactivePower:           46657,
+	DICPhaseBreactivePower:           46658,
+	DICPhaseCreactivePower:           46659,
+	DICReactivePower:                 4294967295,
+	DICTotalApparentPower:            46688,
+	DICPhaseAapparentPower:           46689,
+	DICPhaseBapparentPower:           46690,
+	DICPhaseCapparentPower:           46691,
+	DICApparentPower:                 4294967295,
+	DICTotalPowerFactor:              4294967295,
+	DICPhaseApowerFactor:             4294967295,
+	DICPhaseBpowerFactor:             4294967295,
+	DICPhaseCpowerFactor:             4294967295,
+	DICPowerFactor:                   4294967295,
+	DICAblineVoltage:                 46737,
+	DICBclineVoltage:                 46738,
+	DICCalineVoltage:                 46739,
+	DICLineVoltage:                   4294967295,
+	DICFrequency:                     4294967295,
+	DICTotalOverCurrentCount:         4294967295,
+	DICTotalMeterResetCount:          4294967295,
+	DICMeterResetRecord:              4294967295,
+	DICDateTime:                      4294967295,
+	DICTime:                          4294967295,
+	DICAssetManagementCode:           4294967295,
+	DICActiveConstant:                4294967295,
+	DICReactiveConstant:              4294967295,
+}
+
+// Old is the attribute of DIC.
+func (x DIC) Old() uint {
+	if v, ok := _DICMapOld[x]; ok {
+		return v
+	}
+	return 0
+}
+
+var _DICMapOldFormat = map[DIC]string{
+	DICTotalActiveEnergy:             "",
+	DICPositiveTotalActiveEnergy:     "",
+	DICNegativeTotalActiveEnergy:     "",
+	DICTotalReactiveEnergy1:          "",
+	DICTotalReactiveEnergy2:          "",
+	DICFirstQuadrantReactiveEnergy:   "",
+	DICSecondQuadrantReactiveEnergy:  "",
+	DICThirdQuadrantReactiveEnergy:   "",
+	DICFourthQuadrantReactiveEnergy:  "",
+	DICPositiveTotalApparentEnergy:   "",
+	DICNegativeTotalApparentEnergy:   "",
+	DICAssociatedTotalElectricEnergy: "",
+	DICPhaseAvoltage:                 "XXX",
+	DICPhaseBvoltage:                 "XXX",
+	DICPhaseCvoltage:                 "XXX",
+	DICVoltage:                       "",
+	DICPhaseAcurrent:                 "XX.XX",
+	DICPhaseBcurrent:                 "XX.XX",
+	DICPhaseCcurrent:                 "XX.XX",
+	DICCurrent:                       "",
+	DICTotalActivePower:              "XX.XXXX",
+	DICPhaseAactivePower:             "XX.XXXX",
+	DICPhaseBactivePower:             "XX.XXXX",
+	DICPhaseCactivePower:             "XX.XXXX",
+	DICActivePower:                   "",
+	DICTotalReactivePower:            "",
+	DICPhaseAreactivePower:           "",
+	DICPhaseBreactivePower:           "",
+	DICPhaseCreactivePower:           "",
+	DICReactivePower:                 "",
+	DICTotalApparentPower:            "",
+	DICPhaseAapparentPower:           "",
+	DICPhaseBapparentPower:           "",
+	DICPhaseCapparentPower:           "",
+	DICApparentPower:                 "",
+	DICTotalPowerFactor:              "",
+	DICPhaseApowerFactor:             "",
+	DICPhaseBpowerFactor:             "",
+	DICPhaseCpowerFactor:             "",
+	DICPowerFactor:                   "",
+	DICAblineVoltage:                 "XXX",
+	DICBclineVoltage:                 "XXX",
+	DICCalineVoltage:                 "XXX",
+	DICLineVoltage:                   "",
+	DICFrequency:                     "",
+	DICTotalOverCurrentCount:         "",
+	DICTotalMeterResetCount:          "",
+	DICMeterResetRecord:              "",
+	DICDateTime:                      "",
+	DICTime:                          "",
+	DICAssetManagementCode:           "",
+	DICActiveConstant:                "",
+	DICReactiveConstant:              "",
+}
+
+// OldFormat is the attribute of DIC.
+func (x DIC) OldFormat() string {
+	if v, ok := _DICMapOldFormat[x]; ok {
+		return v
+	}
+	return fmt.Sprintf("DIC(%d).OldFormat", x)
+}
+
+var _DICMapOldSize = map[DIC]int{
+	DICTotalActiveEnergy:             0,
+	DICPositiveTotalActiveEnergy:     0,
+	DICNegativeTotalActiveEnergy:     0,
+	DICTotalReactiveEnergy1:          0,
+	DICTotalReactiveEnergy2:          0,
+	DICFirstQuadrantReactiveEnergy:   0,
+	DICSecondQuadrantReactiveEnergy:  0,
+	DICThirdQuadrantReactiveEnergy:   0,
+	DICFourthQuadrantReactiveEnergy:  0,
+	DICPositiveTotalApparentEnergy:   0,
+	DICNegativeTotalApparentEnergy:   0,
+	DICAssociatedTotalElectricEnergy: 0,
+	DICPhaseAvoltage:                 2,
+	DICPhaseBvoltage:                 2,
+	DICPhaseCvoltage:                 2,
+	DICVoltage:                       0,
+	DICPhaseAcurrent:                 2,
+	DICPhaseBcurrent:                 2,
+	DICPhaseCcurrent:                 2,
+	DICCurrent:                       0,
+	DICTotalActivePower:              3,
+	DICPhaseAactivePower:             3,
+	DICPhaseBactivePower:             3,
+	DICPhaseCactivePower:             3,
+	DICActivePower:                   0,
+	DICTotalReactivePower:            0,
+	DICPhaseAreactivePower:           0,
+	DICPhaseBreactivePower:           0,
+	DICPhaseCreactivePower:           0,
+	DICReactivePower:                 0,
+	DICTotalApparentPower:            0,
+	DICPhaseAapparentPower:           0,
+	DICPhaseBapparentPower:           0,
+	DICPhaseCapparentPower:           0,
+	DICApparentPower:                 0,
+	DICTotalPowerFactor:              0,
+	DICPhaseApowerFactor:             0,
+	DICPhaseBpowerFactor:             0,
+	DICPhaseCpowerFactor:             0,
+	DICPowerFactor:                   0,
+	DICAblineVoltage:                 2,
+	DICBclineVoltage:                 2,
+	DICCalineVoltage:                 2,
+	DICLineVoltage:                   0,
+	DICFrequency:                     0,
+	DICTotalOverCurrentCount:         0,
+	DICTotalMeterResetCount:          0,
+	DICMeterResetRecord:              0,
+	DICDateTime:                      0,
+	DICTime:                          0,
+	DICAssetManagementCode:           0,
+	DICActiveConstant:                0,
+	DICReactiveConstant:              0,
+}
+
+// OldSize is the attribute of DIC.
+func (x DIC) OldSize() int {
+	if v, ok := _DICMapOldSize[x]; ok {
+		return v
+	}
+	return 0
+}
+
+var _DICMapFormat = map[DIC]string{
+	DICTotalActiveEnergy:             "XXXXXX.XX",
+	DICPositiveTotalActiveEnergy:     "XXXXXX.XX",
+	DICNegativeTotalActiveEnergy:     "XXXXXX.XX",
+	DICTotalReactiveEnergy1:          "XXXXXX.XX",
+	DICTotalReactiveEnergy2:          "XXXXXX.XX",
+	DICFirstQuadrantReactiveEnergy:   "XXXXXX.XX",
+	DICSecondQuadrantReactiveEnergy:  "XXXXXX.XX",
+	DICThirdQuadrantReactiveEnergy:   "XXXXXX.XX",
+	DICFourthQuadrantReactiveEnergy:  "XXXXXX.XX",
+	DICPositiveTotalApparentEnergy:   "XXXXXX.XX",
+	DICNegativeTotalApparentEnergy:   "XXXXXX.XX",
+	DICAssociatedTotalElectricEnergy: "XXXXXX.XX",
+	DICPhaseAvoltage:                 "XXX.X",
+	DICPhaseBvoltage:                 "XXX.X",
+	DICPhaseCvoltage:                 "XXX.X",
+	DICVoltage:                       "XXX.X",
+	DICPhaseAcurrent:                 "XXX.XXX",
+	DICPhaseBcurrent:                 "XXX.XXX",
+	DICPhaseCcurrent:                 "XXX.XXX",
+	DICCurrent:                       "XXX.XXX",
+	DICTotalActivePower:              "XX.XXXX",
+	DICPhaseAactivePower:             "XX.XXXX",
+	DICPhaseBactivePower:             "XX.XXXX",
+	DICPhaseCactivePower:             "XX.XXXX",
+	DICActivePower:                   "XX.XXXX",
+	DICTotalReactivePower:            "XX.XXXX",
+	DICPhaseAreactivePower:           "XX.XXXX",
+	DICPhaseBreactivePower:           "XX.XXXX",
+	DICPhaseCreactivePower:           "XX.XXXX",
+	DICReactivePower:                 "XX.XXXX",
+	DICTotalApparentPower:            "XX.XXXX",
+	DICPhaseAapparentPower:           "XX.XXXX",
+	DICPhaseBapparentPower:           "XX.XXXX",
+	DICPhaseCapparentPower:           "XX.XXXX",
+	DICApparentPower:                 "XX.XXXX",
+	DICTotalPowerFactor:              "X.XXX",
+	DICPhaseApowerFactor:             "X.XXX",
+	DICPhaseBpowerFactor:             "X.XXX",
+	DICPhaseCpowerFactor:             "X.XXX",
+	DICPowerFactor:                   "X.XXX",
+	DICAblineVoltage:                 "XXX.X",
+	DICBclineVoltage:                 "XXX.X",
+	DICCalineVoltage:                 "XXX.X",
+	DICLineVoltage:                   "XXX.X",
+	DICFrequency:                     "XX.XX",
+	DICTotalOverCurrentCount:         "XXXXXX, XXXXXX",
+	DICTotalMeterResetCount:          "XXXXXX",
+	DICMeterResetRecord:              "",
+	DICDateTime:                      "YYMMDDWW",
+	DICTime:                          "hhmmss",
+	DICAssetManagementCode:           "N",
+	DICActiveConstant:                "XXXXXX",
+	DICReactiveConstant:              "XXXXXX",
+}
+
+// Format is the attribute of DIC.
+func (x DIC) Format() string {
+	if v, ok := _DICMapFormat[x]; ok {
+		return v
+	}
+	return fmt.Sprintf("DIC(%d).Format", x)
+}
+
+var _DICMapSize = map[DIC]int{
+	DICTotalActiveEnergy:             4,
+	DICPositiveTotalActiveEnergy:     4,
+	DICNegativeTotalActiveEnergy:     4,
+	DICTotalReactiveEnergy1:          4,
+	DICTotalReactiveEnergy2:          4,
+	DICFirstQuadrantReactiveEnergy:   4,
+	DICSecondQuadrantReactiveEnergy:  4,
+	DICThirdQuadrantReactiveEnergy:   4,
+	DICFourthQuadrantReactiveEnergy:  4,
+	DICPositiveTotalApparentEnergy:   4,
+	DICNegativeTotalApparentEnergy:   4,
+	DICAssociatedTotalElectricEnergy: 4,
+	DICPhaseAvoltage:                 2,
+	DICPhaseBvoltage:                 2,
+	DICPhaseCvoltage:                 2,
+	DICVoltage:                       2,
+	DICPhaseAcurrent:                 3,
+	DICPhaseBcurrent:                 3,
+	DICPhaseCcurrent:                 3,
+	DICCurrent:                       3,
+	DICTotalActivePower:              3,
+	DICPhaseAactivePower:             3,
+	DICPhaseBactivePower:             3,
+	DICPhaseCactivePower:             3,
+	DICActivePower:                   3,
+	DICTotalReactivePower:            3,
+	DICPhaseAreactivePower:           3,
+	DICPhaseBreactivePower:           3,
+	DICPhaseCreactivePower:           3,
+	DICReactivePower:                 3,
+	DICTotalApparentPower:            3,
+	DICPhaseAapparentPower:           3,
+	DICPhaseBapparentPower:           3,
+	DICPhaseCapparentPower:           3,
+	DICApparentPower:                 3,
+	DICTotalPowerFactor:              2,
+	DICPhaseApowerFactor:             2,
+	DICPhaseBpowerFactor:             2,
+	DICPhaseCpowerFactor:             2,
+	DICPowerFactor:                   2,
+	DICAblineVoltage:                 2,
+	DICBclineVoltage:                 2,
+	DICCalineVoltage:                 2,
+	DICLineVoltage:                   2,
+	DICFrequency:                     2,
+	DICTotalOverCurrentCount:         6,
+	DICTotalMeterResetCount:          3,
+	DICMeterResetRecord:              0,
+	DICDateTime:                      4,
+	DICTime:                          3,
+	DICAssetManagementCode:           32,
+	DICActiveConstant:                3,
+	DICReactiveConstant:              3,
+}
+
+// Size is the attribute of DIC.
+func (x DIC) Size() int {
+	if v, ok := _DICMapSize[x]; ok {
+		return v
+	}
+	return 0
+}
+
+var _DICMapUnit = map[DIC]string{
+	DICTotalActiveEnergy:             "kWh",
+	DICPositiveTotalActiveEnergy:     "kWh",
+	DICNegativeTotalActiveEnergy:     "kWh",
+	DICTotalReactiveEnergy1:          "kvarh",
+	DICTotalReactiveEnergy2:          "kvarh",
+	DICFirstQuadrantReactiveEnergy:   "kvarh",
+	DICSecondQuadrantReactiveEnergy:  "kvarh",
+	DICThirdQuadrantReactiveEnergy:   "kvarh",
+	DICFourthQuadrantReactiveEnergy:  "kvarh",
+	DICPositiveTotalApparentEnergy:   "KVAh",
+	DICNegativeTotalApparentEnergy:   "KVAh",
+	DICAssociatedTotalElectricEnergy: "KVh",
+	DICPhaseAvoltage:                 "V",
+	DICPhaseBvoltage:                 "V",
+	DICPhaseCvoltage:                 "V",
+	DICVoltage:                       "V",
+	DICPhaseAcurrent:                 "A",
+	DICPhaseBcurrent:                 "A",
+	DICPhaseCcurrent:                 "A",
+	DICCurrent:                       "A",
+	DICTotalActivePower:              "kW",
+	DICPhaseAactivePower:             "kW",
+	DICPhaseBactivePower:             "kW",
+	DICPhaseCactivePower:             "kW",
+	DICActivePower:                   "kW",
+	DICTotalReactivePower:            "kvar",
+	DICPhaseAreactivePower:           "kvar",
+	DICPhaseBreactivePower:           "kvar",
+	DICPhaseCreactivePower:           "kvar",
+	DICReactivePower:                 "kvar",
+	DICTotalApparentPower:            "kVA",
+	DICPhaseAapparentPower:           "kVA",
+	DICPhaseBapparentPower:           "kVA",
+	DICPhaseCapparentPower:           "kVA",
+	DICApparentPower:                 "kVA",
+	DICTotalPowerFactor:              "",
+	DICPhaseApowerFactor:             "",
+	DICPhaseBpowerFactor:             "",
+	DICPhaseCpowerFactor:             "",
+	DICPowerFactor:                   "",
+	DICAblineVoltage:                 "V",
+	DICBclineVoltage:                 "V",
+	DICCalineVoltage:                 "V",
+	DICLineVoltage:                   "V",
+	DICFrequency:                     "Hz",
+	DICTotalOverCurrentCount:         "次,分",
+	DICTotalMeterResetCount:          "次",
+	DICMeterResetRecord:              "",
+	DICDateTime:                      "年月日星期",
+	DICTime:                          "时分秒",
+	DICAssetManagementCode:           "",
+	DICActiveConstant:                "imp/kWh",
+	DICReactiveConstant:              "imp/kvarh",
+}
+
+// Unit is the attribute of DIC.
+func (x DIC) Unit() string {
+	if v, ok := _DICMapUnit[x]; ok {
+		return v
+	}
+	return fmt.Sprintf("DIC(%d).Unit", x)
+}
+
+// Val is the attribute of DIC.
+func (x DIC) Val() uint {
+	return uint(x)
+}
+
+// IsValid provides a quick way to determine if the typed value is
+// part of the allowed enumerated values
+func (x DIC) IsValid() bool {
+	_, ok := _DICMapName[x]
+	return ok
+}
+
+// String implements the Stringer interface.
+func (x DIC) String() string {
+	return x.Name()
+}
+
+var _DICNameMap = map[string]DIC{
+	_DICName[0:17]:    DICTotalActiveEnergy,
+	_DICName[17:42]:   DICPositiveTotalActiveEnergy,
+	_DICName[42:67]:   DICNegativeTotalActiveEnergy,
+	_DICName[67:87]:   DICTotalReactiveEnergy1,
+	_DICName[87:107]:  DICTotalReactiveEnergy2,
+	_DICName[107:134]: DICFirstQuadrantReactiveEnergy,
+	_DICName[134:162]: DICSecondQuadrantReactiveEnergy,
+	_DICName[162:189]: DICThirdQuadrantReactiveEnergy,
+	_DICName[189:217]: DICFourthQuadrantReactiveEnergy,
+	_DICName[217:244]: DICPositiveTotalApparentEnergy,
+	_DICName[244:271]: DICNegativeTotalApparentEnergy,
+	_DICName[271:300]: DICAssociatedTotalElectricEnergy,
+	_DICName[300:313]: DICPhaseAvoltage,
+	_DICName[313:326]: DICPhaseBvoltage,
+	_DICName[326:339]: DICPhaseCvoltage,
+	_DICName[339:346]: DICVoltage,
+	_DICName[346:359]: DICPhaseAcurrent,
+	_DICName[359:372]: DICPhaseBcurrent,
+	_DICName[372:385]: DICPhaseCcurrent,
+	_DICName[385:392]: DICCurrent,
+	_DICName[392:408]: DICTotalActivePower,
+	_DICName[408:425]: DICPhaseAactivePower,
+	_DICName[425:442]: DICPhaseBactivePower,
+	_DICName[442:459]: DICPhaseCactivePower,
+	_DICName[459:470]: DICActivePower,
+	_DICName[470:488]: DICTotalReactivePower,
+	_DICName[488:507]: DICPhaseAreactivePower,
+	_DICName[507:526]: DICPhaseBreactivePower,
+	_DICName[526:545]: DICPhaseCreactivePower,
+	_DICName[545:558]: DICReactivePower,
+	_DICName[558:576]: DICTotalApparentPower,
+	_DICName[576:595]: DICPhaseAapparentPower,
+	_DICName[595:614]: DICPhaseBapparentPower,
+	_DICName[614:633]: DICPhaseCapparentPower,
+	_DICName[633:646]: DICApparentPower,
+	_DICName[646:662]: DICTotalPowerFactor,
+	_DICName[662:679]: DICPhaseApowerFactor,
+	_DICName[679:696]: DICPhaseBpowerFactor,
+	_DICName[696:713]: DICPhaseCpowerFactor,
+	_DICName[713:724]: DICPowerFactor,
+	_DICName[724:737]: DICAblineVoltage,
+	_DICName[737:750]: DICBclineVoltage,
+	_DICName[750:763]: DICCalineVoltage,
+	_DICName[763:774]: DICLineVoltage,
+	_DICName[774:783]: DICFrequency,
+	_DICName[783:804]: DICTotalOverCurrentCount,
+	_DICName[804:824]: DICTotalMeterResetCount,
+	_DICName[824:840]: DICMeterResetRecord,
+	_DICName[840:848]: DICDateTime,
+	_DICName[848:852]: DICTime,
+	_DICName[852:871]: DICAssetManagementCode,
+	_DICName[871:885]: DICActiveConstant,
+	_DICName[885:901]: DICReactiveConstant,
+}
+
+// ParseDIC converts a string to a DIC.
+func ParseDIC(value string) (DIC, error) {
+	if x, ok := _DICNameMap[value]; ok {
+		return x, nil
+	}
+	return DIC(0), fmt.Errorf("%s is %w", value, ErrInvalidDIC)
 }
 
 var ErrInvalidErrorCode = errors.New("not a valid ErrorCode")
