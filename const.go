@@ -2,27 +2,34 @@ package dlt645
 
 //go:generate ag
 
+const (
+	MaxReadLen             = 200 // 读数据的最大数据长度
+	MaxWriteLen            = 50  // 写数据的最大数据长度
+	DefaultResponseTimeout = 500 // 500ms
+	MaxDeviceNameLen       = 10  // 最大设备名长度
+)
+
 /*
-V is the protocol version， cmdLen is read data command len
+P is the protocol version， cmdLen is read data command len
 
 	@Enum(cmdLen int){
-		_1997(14)
-		_2007(16)
+		V1997(14)
+		V2007(16)
 	}
 */
-type V int
+type P int
 
 /*
-Code dlt 645的C码
+CCode dlt 645的C码的D4-D0的编码
 
 	@Enum(old byte) {
 		BRC(0x08) = 0x08 // 广播校时
 		RD (0x01) = 0X11 // 读数据
 		RDM(0x02) = 0x12 // 读后续数据
-		RDA(0xFF) = 0x13 // 读设备地址
+		RDA(0xFF) = 0x13 // 读通信地址
 		WR (0x04) = 0x14 // 写数据
-		WRA(0x0A) = 0x15 // 写设备地址
-		DJ (0xFF) = 0x16 // 冻结
+		WRA(0x0A) = 0x15 // 写通信地址
+		DJ (0xFF) = 0x16 // 冻结命令
 		BR (0x0C) = 0x17 // 更改通信速率
 		PD (0x0F) = 0x18 // 修改密码
 		XL (0x10) = 0x19 // 最大需量清零
@@ -31,7 +38,7 @@ Code dlt 645的C码
 		RR (0x03) = 0xFF // 重读数据
 	}
 */
-type Code byte
+type CCode byte
 
 /*
 ErrorCode
