@@ -11,31 +11,31 @@ import (
 
 const (
 	// CodeBrc is a Code of type BRC.
-	CodeBrc Code = iota // 广播校时
+	CodeBrc Code = 8 // 广播校时
 	// CodeRd is a Code of type RD.
-	CodeRd // 读数据
+	CodeRd Code = 17 // 读数据
 	// CodeRdm is a Code of type RDM.
-	CodeRdm // 读后续数据
+	CodeRdm Code = 18 // 读后续数据
 	// CodeRda is a Code of type RDA.
-	CodeRda // 读设备地址
+	CodeRda Code = 19 // 读设备地址
 	// CodeWr is a Code of type WR.
-	CodeWr // 写数据
+	CodeWr Code = 20 // 写数据
 	// CodeWra is a Code of type WRA.
-	CodeWra // 写设备地址
+	CodeWra Code = 21 // 写设备地址
 	// CodeDj is a Code of type DJ.
-	CodeDj // 冻结
+	CodeDj Code = 22 // 冻结
 	// CodeBr is a Code of type BR.
-	CodeBr // 更改通信速率
+	CodeBr Code = 23 // 更改通信速率
 	// CodePd is a Code of type PD.
-	CodePd // 修改密码
+	CodePd Code = 24 // 修改密码
 	// CodeXl is a Code of type XL.
-	CodeXl // 最大需量清零
+	CodeXl Code = 25 // 最大需量清零
 	// CodeDb is a Code of type DB.
-	CodeDb // 电表清零
+	CodeDb Code = 26 // 电表清零
 	// CodeMsg is a Code of type MSG.
-	CodeMsg // 事件清零
+	CodeMsg Code = 27 // 事件清零
 	// CodeRr is a Code of type RR.
-	CodeRr // 重读数据
+	CodeRr Code = 255 // 重读数据
 )
 
 const (
@@ -153,19 +153,19 @@ const (
 
 const (
 	// ErrorCodeRate is an ErrorCode of type RATE.
-	ErrorCodeRate ErrorCode = iota // 费率数超
+	ErrorCodeRate ErrorCode = 64 // 费率数超
 	// ErrorCodeDay is an ErrorCode of type DAY.
-	ErrorCodeDay // 日时段数超
+	ErrorCodeDay ErrorCode = 32 // 日时段数超
 	// ErrorCodeYear is an ErrorCode of type YEAR.
-	ErrorCodeYear // 年时区数超
+	ErrorCodeYear ErrorCode = 16 // 年时区数超
 	// ErrorCodeBr is an ErrorCode of type BR.
-	ErrorCodeBr // 通信速率不能更改
+	ErrorCodeBr ErrorCode = 8 // 通信速率不能更改
 	// ErrorCodePd is an ErrorCode of type PD.
-	ErrorCodePd // 密码错误/未授权
+	ErrorCodePd ErrorCode = 4 // 密码错误/未授权
 	// ErrorCodeData is an ErrorCode of type DATA.
-	ErrorCodeData // 无请求数据
+	ErrorCodeData ErrorCode = 2 // 无请求数据
 	// ErrorCodeOther is an ErrorCode of type OTHER.
-	ErrorCodeOther // 其他错误
+	ErrorCodeOther ErrorCode = 1 // 其他错误
 )
 
 const (
@@ -203,7 +203,7 @@ func (x Code) Name() string {
 	return fmt.Sprintf("Code(%d).Name", x)
 }
 
-var _CodeMapC1997 = map[Code]uint8{
+var _CodeMapOld = map[Code]uint8{
 	CodeBrc: 8,
 	CodeRd:  1,
 	CodeRdm: 2,
@@ -219,33 +219,9 @@ var _CodeMapC1997 = map[Code]uint8{
 	CodeRr:  3,
 }
 
-// C1997 is the attribute of Code.
-func (x Code) C1997() uint8 {
-	if v, ok := _CodeMapC1997[x]; ok {
-		return v
-	}
-	return 0
-}
-
-var _CodeMapC2007 = map[Code]uint8{
-	CodeBrc: 8,
-	CodeRd:  17,
-	CodeRdm: 18,
-	CodeRda: 19,
-	CodeWr:  20,
-	CodeWra: 21,
-	CodeDj:  22,
-	CodeBr:  23,
-	CodePd:  24,
-	CodeXl:  25,
-	CodeDb:  26,
-	CodeMsg: 27,
-	CodeRr:  255,
-}
-
-// C2007 is the attribute of Code.
-func (x Code) C2007() uint8 {
-	if v, ok := _CodeMapC2007[x]; ok {
+// Old is the attribute of Code.
+func (x Code) Old() uint8 {
+	if v, ok := _CodeMapOld[x]; ok {
 		return v
 	}
 	return 0
@@ -719,7 +695,7 @@ func (x ErrorCode) Name() string {
 	return fmt.Sprintf("ErrorCode(%d).Name", x)
 }
 
-var _ErrorCodeMapC1997 = map[ErrorCode]uint8{
+var _ErrorCodeMapOld = map[ErrorCode]uint8{
 	ErrorCodeRate:  64,
 	ErrorCodeDay:   32,
 	ErrorCodeYear:  16,
@@ -729,27 +705,9 @@ var _ErrorCodeMapC1997 = map[ErrorCode]uint8{
 	ErrorCodeOther: 1,
 }
 
-// C1997 is the attribute of ErrorCode.
-func (x ErrorCode) C1997() uint8 {
-	if v, ok := _ErrorCodeMapC1997[x]; ok {
-		return v
-	}
-	return 0
-}
-
-var _ErrorCodeMapC2007 = map[ErrorCode]uint8{
-	ErrorCodeRate:  64,
-	ErrorCodeDay:   32,
-	ErrorCodeYear:  16,
-	ErrorCodeBr:    8,
-	ErrorCodePd:    4,
-	ErrorCodeData:  2,
-	ErrorCodeOther: 1,
-}
-
-// C2007 is the attribute of ErrorCode.
-func (x ErrorCode) C2007() uint8 {
-	if v, ok := _ErrorCodeMapC2007[x]; ok {
+// Old is the attribute of ErrorCode.
+func (x ErrorCode) Old() uint8 {
+	if v, ok := _ErrorCodeMapOld[x]; ok {
 		return v
 	}
 	return 0
