@@ -2,44 +2,12 @@ package dlt645
 
 //go:generate ag
 
-const (
-	// 读取数据命令的长度
-	DLT645_1997_RD_CMD_LEN = 14
-
-	// DLT645 1997 数据标识
-	DIC_B611 = 0xB611 // A相电压
-	DIC_B612 = 0xB612 // B相电压
-	DIC_B613 = 0xB613 // C相电压
-	DIC_B691 = 0xB691 // AB线电压
-	DIC_B692 = 0xB692 // BC线电压
-	DIC_B693 = 0xB693 // CA线电压
-
-	DIC_B621 = 0xB621 // A相电流
-	DIC_B622 = 0xB622 // B相电流
-	DIC_B623 = 0xB623 // C相电流
-
-	DIC_B630 = 0xB630 // 总有功功率
-	DIC_B631 = 0xB631 // A相有功功率
-	DIC_B632 = 0xB632 // B相有功功率
-	DIC_B633 = 0xB633 // C相有功功率
-
-	DIC_B640 = 0xB640 // 总无功功率
-	DIC_B641 = 0xB641 // A相无功功率
-	DIC_B642 = 0xB642 // B相无功功率
-	DIC_B643 = 0xB643 // C相无功功率
-
-	DIC_B660 = 0xB660 // 总视在功率
-	DIC_B661 = 0xB661 // A相视在功率
-	DIC_B662 = 0xB662 // B相视在功率
-	DIC_B663 = 0xB663 // C相视在功率
-)
-
 /*
-V is the protocol version
+V is the protocol version， cmdLen is read data command len
 
-	@Enum {
-		_1997
-		_2007
+	@Enum(cmdLen int){
+		_1997(14)
+		_2007(16)
 	}
 */
 type V int
@@ -99,37 +67,37 @@ DIC date identification code. the old is 1997 code, the val is 2007 code
 		AssociatedTotalElectricEnergy (0xFFFFFFFF, "XXXXXX.XX", 4, "KVh")	= 0x00800000 // 关联总电能
 
 		// 变量数据标识
-		PhaseAVoltage 		(0xFFFFFFFF, "XXX.X", 2, "V")		= 0x02010100 // A相电压
-		PhaseCVoltage 		(0xFFFFFFFF, "XXX.X", 2, "V")		= 0x02010300 // C相电压
-		PhaseBVoltage 		(0xFFFFFFFF, "XXX.X", 2, "V")		= 0x02010200 // B相电压
+		PhaseAVoltage 		(0x0000B611, "XXX.X", 2, "V")		= 0x02010100 // A相电压
+		PhaseBVoltage 		(0x0000B612, "XXX.X", 2, "V")		= 0x02010200 // B相电压
+		PhaseCVoltage 		(0x0000B613, "XXX.X", 2, "V")		= 0x02010300 // C相电压
 		Voltage       		(0xFFFFFFFF, "XXX.X", 2, "V")		= 0x0201FF00 // 电压数据块
-		PhaseACurrent 		(0xFFFFFFFF, "XXX.XXX", 3, "A")		= 0x02020100 // A相电流
-		PhaseBCurrent 		(0xFFFFFFFF, "XXX.XXX", 3, "A")		= 0x02020200 // B相电流
-		PhaseCCurrent 		(0xFFFFFFFF, "XXX.XXX", 3, "A")		= 0x02020300 // C相电流
+		PhaseACurrent 		(0x0000B621, "XXX.XXX", 3, "A")		= 0x02020100 // A相电流
+		PhaseBCurrent 		(0x0000B622, "XXX.XXX", 3, "A")		= 0x02020200 // B相电流
+		PhaseCCurrent 		(0x0000B623, "XXX.XXX", 3, "A")		= 0x02020300 // C相电流
 		Current       		(0xFFFFFFFF, "XXX.XXX", 3, "A")		= 0x0202FF00 // 电流数据块
-		TotalActivePower  	(0xFFFFFFFF, "XX.XXXX", 3, "kW")	= 0x02030000 // 总有功功率
-		PhaseAActivePower 	(0xFFFFFFFF, "XX.XXXX", 3, "kW")	= 0x02030100 // A相有功功率
-		PhaseBActivePower 	(0xFFFFFFFF, "XX.XXXX", 3, "kW")	= 0x02030200 // B相有功功率
-		PhaseCActivePower 	(0xFFFFFFFF, "XX.XXXX", 3, "kW")	= 0x02030300 // C相有功功率
+		TotalActivePower  	(0x0000B630, "XX.XXXX", 3, "kW")	= 0x02030000 // 总有功功率
+		PhaseAActivePower 	(0x0000B631, "XX.XXXX", 3, "kW")	= 0x02030100 // A相有功功率
+		PhaseBActivePower 	(0x0000B632, "XX.XXXX", 3, "kW")	= 0x02030200 // B相有功功率
+		PhaseCActivePower 	(0x0000B633, "XX.XXXX", 3, "kW")	= 0x02030300 // C相有功功率
 		ActivePower       	(0xFFFFFFFF, "XX.XXXX", 3, "kW")	= 0x0203FF00 // 有功功率数据块
-		TotalReactivePower  (0xFFFFFFFF, "XX.XXXX", 3, "kvar")	= 0x02040000 // 总无功功率
-		PhaseAReactivePower (0xFFFFFFFF, "XX.XXXX", 3, "kvar")	= 0x02040100 // A相无功功率
-		PhaseBReactivePower (0xFFFFFFFF, "XX.XXXX", 3, "kvar")	= 0x02040200 // B相无功功率
-		PhaseCReactivePower (0xFFFFFFFF, "XX.XXXX", 3, "kvar")	= 0x02040300 // C相无功功率
+		TotalReactivePower  (0x0000B640, "XX.XXXX", 3, "kvar")	= 0x02040000 // 总无功功率
+		PhaseAReactivePower (0x0000B641, "XX.XXXX", 3, "kvar")	= 0x02040100 // A相无功功率
+		PhaseBReactivePower (0x0000B642, "XX.XXXX", 3, "kvar")	= 0x02040200 // B相无功功率
+		PhaseCReactivePower (0x0000B643, "XX.XXXX", 3, "kvar")	= 0x02040300 // C相无功功率
 		ReactivePower       (0xFFFFFFFF, "XX.XXXX", 3, "kvar")	= 0x0204FF00 // 无功功率数据块
-		TotalApparentPower  (0xFFFFFFFF, "XX.XXXX", 3, "kVA")	= 0x02050000 // 总视在功率
-		PhaseAApparentPower (0xFFFFFFFF, "XX.XXXX", 3, "kVA")	= 0x02050100 // A相视在功率
-		PhaseBApparentPower (0xFFFFFFFF, "XX.XXXX", 3, "kVA")	= 0x02050200 // B相视在功率
-		PhaseCApparentPower (0xFFFFFFFF, "XX.XXXX", 3, "kVA")	= 0x02050300 // C相视在功率
+		TotalApparentPower  (0x0000B660, "XX.XXXX", 3, "kVA")	= 0x02050000 // 总视在功率
+		PhaseAApparentPower (0x0000B661, "XX.XXXX", 3, "kVA")	= 0x02050100 // A相视在功率
+		PhaseBApparentPower (0x0000B662, "XX.XXXX", 3, "kVA")	= 0x02050200 // B相视在功率
+		PhaseCApparentPower (0x0000B663, "XX.XXXX", 3, "kVA")	= 0x02050300 // C相视在功率
 		ApparentPower       (0xFFFFFFFF, "XX.XXXX", 3, "kVA")	= 0x0205FF00 // 视在功率数据块
 		TotalPowerFactor  	(0xFFFFFFFF, "X.XXX", 2, "")		= 0x02060000 // 总功率因素
 		PhaseAPowerFactor 	(0xFFFFFFFF, "X.XXX", 2, "")		= 0x02060100 // A相功率因素
 		PhaseBPowerFactor 	(0xFFFFFFFF, "X.XXX", 2, "")		= 0x02060200 // B相功率因素
 		PhaseCPowerFactor 	(0xFFFFFFFF, "X.XXX", 2, "")		= 0x02060300 // C相功率因素
 		PowerFactor       	(0xFFFFFFFF, "X.XXX", 2, "")		= 0x0206FF00 // 功率因素数据块
-		ABLineVoltage 		(0xFFFFFFFF, "XXX.X", 2, "V")		= 0x020C0100 // AB线电压
-		BCLineVoltage 		(0xFFFFFFFF, "XXX.X", 2, "V")		= 0x020C0200 // BC线电压
-		CALineVoltage 		(0xFFFFFFFF, "XXX.X", 2, "V")		= 0x020C0300 // CA线电压
+		ABLineVoltage 		(0x0000B691, "XXX.X", 2, "V")		= 0x020C0100 // AB线电压
+		BCLineVoltage 		(0x0000B692, "XXX.X", 2, "V")		= 0x020C0200 // BC线电压
+		CALineVoltage 		(0x0000B693, "XXX.X", 2, "V")		= 0x020C0300 // CA线电压
 		LineVoltage   		(0xFFFFFFFF, "XXX.X", 2, "V")		= 0x020CFF00 // 线电压数据块
 		Frequency 			(0xFFFFFFFF, "XX.XX", 2, "Hz")		= 0x02800002 // 频率
 
@@ -146,4 +114,5 @@ DIC date identification code. the old is 1997 code, the val is 2007 code
 		ReactiveConstant	(0xFFFFFFFF, "XXXXXX", 3, "imp/kvarh")		= 0x0400040A // 电表无功常数
 	}
 */
+
 type DIC uint
