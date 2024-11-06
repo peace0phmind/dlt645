@@ -10,32 +10,32 @@ import (
 )
 
 const (
-	// CCodeBrc is a CCode of type BRC.
-	CCodeBrc CCode = 8 // 广播校时
-	// CCodeRd is a CCode of type RD.
-	CCodeRd CCode = 17 // 读数据
-	// CCodeRdm is a CCode of type RDM.
-	CCodeRdm CCode = 18 // 读后续数据
-	// CCodeRda is a CCode of type RDA.
-	CCodeRda CCode = 19 // 读通信地址
-	// CCodeWr is a CCode of type WR.
-	CCodeWr CCode = 20 // 写数据
-	// CCodeWra is a CCode of type WRA.
-	CCodeWra CCode = 21 // 写通信地址
-	// CCodeDj is a CCode of type DJ.
-	CCodeDj CCode = 22 // 冻结命令
-	// CCodeBr is a CCode of type BR.
-	CCodeBr CCode = 23 // 更改通信速率
-	// CCodePd is a CCode of type PD.
-	CCodePd CCode = 24 // 修改密码
-	// CCodeXl is a CCode of type XL.
-	CCodeXl CCode = 25 // 最大需量清零
-	// CCodeDb is a CCode of type DB.
-	CCodeDb CCode = 26 // 电表清零
-	// CCodeMsg is a CCode of type MSG.
-	CCodeMsg CCode = 27 // 事件清零
-	// CCodeRr is a CCode of type RR.
-	CCodeRr CCode = 255 // 重读数据
+	// CCodeBRC is a CCode of type BRC.
+	CCodeBRC CCode = 8 // 广播校时
+	// CCodeRD is a CCode of type RD.
+	CCodeRD CCode = 17 // 读数据
+	// CCodeRDM is a CCode of type RDM.
+	CCodeRDM CCode = 18 // 读后续数据
+	// CCodeRDA is a CCode of type RDA.
+	CCodeRDA CCode = 19 // 读通信地址
+	// CCodeWR is a CCode of type WR.
+	CCodeWR CCode = 20 // 写数据
+	// CCodeWRA is a CCode of type WRA.
+	CCodeWRA CCode = 21 // 写通信地址
+	// CCodeDJ is a CCode of type DJ.
+	CCodeDJ CCode = 22 // 冻结命令
+	// CCodeBR is a CCode of type BR.
+	CCodeBR CCode = 23 // 更改通信速率
+	// CCodePD is a CCode of type PD.
+	CCodePD CCode = 24 // 修改密码
+	// CCodeXL is a CCode of type XL.
+	CCodeXL CCode = 25 // 最大需量清零
+	// CCodeDB is a CCode of type DB.
+	CCodeDB CCode = 26 // 电表清零
+	// CCodeMSG is a CCode of type MSG.
+	CCodeMSG CCode = 27 // 事件清零
+	// CCodeRR is a CCode of type RR.
+	CCodeRR CCode = 255 // 重读数据
 )
 
 const (
@@ -64,69 +64,69 @@ const (
 	DICNegativeTotalApparentEnergy DIC = 655360 // 反向视在总电能
 	// DICAssociatedTotalElectricEnergy is a DIC of type AssociatedTotalElectricEnergy.
 	DICAssociatedTotalElectricEnergy DIC = 8388608 // 关联总电能
-	// DICPhaseAvoltage is a DIC of type PhaseAVoltage.
+	// DICPhaseAVoltage is a DIC of type PhaseAVoltage.
 	// 变量数据标识
-	DICPhaseAvoltage DIC = 33620224 // A相电压
-	// DICPhaseBvoltage is a DIC of type PhaseBVoltage.
-	DICPhaseBvoltage DIC = 33620480 // B相电压
-	// DICPhaseCvoltage is a DIC of type PhaseCVoltage.
-	DICPhaseCvoltage DIC = 33620736 // C相电压
+	DICPhaseAVoltage DIC = 33620224 // A相电压
+	// DICPhaseBVoltage is a DIC of type PhaseBVoltage.
+	DICPhaseBVoltage DIC = 33620480 // B相电压
+	// DICPhaseCVoltage is a DIC of type PhaseCVoltage.
+	DICPhaseCVoltage DIC = 33620736 // C相电压
 	// DICVoltage is a DIC of type Voltage.
 	DICVoltage DIC = 33685248 // 电压数据块
-	// DICPhaseAcurrent is a DIC of type PhaseACurrent.
-	DICPhaseAcurrent DIC = 33685760 // A相电流
-	// DICPhaseBcurrent is a DIC of type PhaseBCurrent.
-	DICPhaseBcurrent DIC = 33686016 // B相电流
-	// DICPhaseCcurrent is a DIC of type PhaseCCurrent.
-	DICPhaseCcurrent DIC = 33686272 // C相电流
+	// DICPhaseACurrent is a DIC of type PhaseACurrent.
+	DICPhaseACurrent DIC = 33685760 // A相电流
+	// DICPhaseBCurrent is a DIC of type PhaseBCurrent.
+	DICPhaseBCurrent DIC = 33686016 // B相电流
+	// DICPhaseCCurrent is a DIC of type PhaseCCurrent.
+	DICPhaseCCurrent DIC = 33686272 // C相电流
 	// DICCurrent is a DIC of type Current.
 	DICCurrent DIC = 33750784 // 电流数据块
 	// DICTotalActivePower is a DIC of type TotalActivePower.
 	DICTotalActivePower DIC = 33751040 // 总有功功率
-	// DICPhaseAactivePower is a DIC of type PhaseAActivePower.
-	DICPhaseAactivePower DIC = 33751296 // A相有功功率
-	// DICPhaseBactivePower is a DIC of type PhaseBActivePower.
-	DICPhaseBactivePower DIC = 33751552 // B相有功功率
-	// DICPhaseCactivePower is a DIC of type PhaseCActivePower.
-	DICPhaseCactivePower DIC = 33751808 // C相有功功率
+	// DICPhaseAActivePower is a DIC of type PhaseAActivePower.
+	DICPhaseAActivePower DIC = 33751296 // A相有功功率
+	// DICPhaseBActivePower is a DIC of type PhaseBActivePower.
+	DICPhaseBActivePower DIC = 33751552 // B相有功功率
+	// DICPhaseCActivePower is a DIC of type PhaseCActivePower.
+	DICPhaseCActivePower DIC = 33751808 // C相有功功率
 	// DICActivePower is a DIC of type ActivePower.
 	DICActivePower DIC = 33816320 // 有功功率数据块
 	// DICTotalReactivePower is a DIC of type TotalReactivePower.
 	DICTotalReactivePower DIC = 33816576 // 总无功功率
-	// DICPhaseAreactivePower is a DIC of type PhaseAReactivePower.
-	DICPhaseAreactivePower DIC = 33816832 // A相无功功率
-	// DICPhaseBreactivePower is a DIC of type PhaseBReactivePower.
-	DICPhaseBreactivePower DIC = 33817088 // B相无功功率
-	// DICPhaseCreactivePower is a DIC of type PhaseCReactivePower.
-	DICPhaseCreactivePower DIC = 33817344 // C相无功功率
+	// DICPhaseAReactivePower is a DIC of type PhaseAReactivePower.
+	DICPhaseAReactivePower DIC = 33816832 // A相无功功率
+	// DICPhaseBReactivePower is a DIC of type PhaseBReactivePower.
+	DICPhaseBReactivePower DIC = 33817088 // B相无功功率
+	// DICPhaseCReactivePower is a DIC of type PhaseCReactivePower.
+	DICPhaseCReactivePower DIC = 33817344 // C相无功功率
 	// DICReactivePower is a DIC of type ReactivePower.
 	DICReactivePower DIC = 33881856 // 无功功率数据块
 	// DICTotalApparentPower is a DIC of type TotalApparentPower.
 	DICTotalApparentPower DIC = 33882112 // 总视在功率
-	// DICPhaseAapparentPower is a DIC of type PhaseAApparentPower.
-	DICPhaseAapparentPower DIC = 33882368 // A相视在功率
-	// DICPhaseBapparentPower is a DIC of type PhaseBApparentPower.
-	DICPhaseBapparentPower DIC = 33882624 // B相视在功率
-	// DICPhaseCapparentPower is a DIC of type PhaseCApparentPower.
-	DICPhaseCapparentPower DIC = 33882880 // C相视在功率
+	// DICPhaseAApparentPower is a DIC of type PhaseAApparentPower.
+	DICPhaseAApparentPower DIC = 33882368 // A相视在功率
+	// DICPhaseBApparentPower is a DIC of type PhaseBApparentPower.
+	DICPhaseBApparentPower DIC = 33882624 // B相视在功率
+	// DICPhaseCApparentPower is a DIC of type PhaseCApparentPower.
+	DICPhaseCApparentPower DIC = 33882880 // C相视在功率
 	// DICApparentPower is a DIC of type ApparentPower.
 	DICApparentPower DIC = 33947392 // 视在功率数据块
 	// DICTotalPowerFactor is a DIC of type TotalPowerFactor.
 	DICTotalPowerFactor DIC = 33947648 // 总功率因素
-	// DICPhaseApowerFactor is a DIC of type PhaseAPowerFactor.
-	DICPhaseApowerFactor DIC = 33947904 // A相功率因素
-	// DICPhaseBpowerFactor is a DIC of type PhaseBPowerFactor.
-	DICPhaseBpowerFactor DIC = 33948160 // B相功率因素
-	// DICPhaseCpowerFactor is a DIC of type PhaseCPowerFactor.
-	DICPhaseCpowerFactor DIC = 33948416 // C相功率因素
+	// DICPhaseAPowerFactor is a DIC of type PhaseAPowerFactor.
+	DICPhaseAPowerFactor DIC = 33947904 // A相功率因素
+	// DICPhaseBPowerFactor is a DIC of type PhaseBPowerFactor.
+	DICPhaseBPowerFactor DIC = 33948160 // B相功率因素
+	// DICPhaseCPowerFactor is a DIC of type PhaseCPowerFactor.
+	DICPhaseCPowerFactor DIC = 33948416 // C相功率因素
 	// DICPowerFactor is a DIC of type PowerFactor.
 	DICPowerFactor DIC = 34012928 // 功率因素数据块
-	// DICAblineVoltage is a DIC of type ABLineVoltage.
-	DICAblineVoltage DIC = 34341120 // AB线电压
-	// DICBclineVoltage is a DIC of type BCLineVoltage.
-	DICBclineVoltage DIC = 34341376 // BC线电压
-	// DICCalineVoltage is a DIC of type CALineVoltage.
-	DICCalineVoltage DIC = 34341632 // CA线电压
+	// DICABLineVoltage is a DIC of type ABLineVoltage.
+	DICABLineVoltage DIC = 34341120 // AB线电压
+	// DICBCLineVoltage is a DIC of type BCLineVoltage.
+	DICBCLineVoltage DIC = 34341376 // BC线电压
+	// DICCALineVoltage is a DIC of type CALineVoltage.
+	DICCALineVoltage DIC = 34341632 // CA线电压
 	// DICLineVoltage is a DIC of type LineVoltage.
 	DICLineVoltage DIC = 34406144 // 线电压数据块
 	// DICFrequency is a DIC of type Frequency.
@@ -152,20 +152,20 @@ const (
 )
 
 const (
-	// ErrorCodeRate is an ErrorCode of type RATE.
-	ErrorCodeRate ErrorCode = 64 // 费率数超
-	// ErrorCodeDay is an ErrorCode of type DAY.
-	ErrorCodeDay ErrorCode = 32 // 日时段数超
-	// ErrorCodeYear is an ErrorCode of type YEAR.
-	ErrorCodeYear ErrorCode = 16 // 年时区数超
-	// ErrorCodeBr is an ErrorCode of type BR.
-	ErrorCodeBr ErrorCode = 8 // 通信速率不能更改
-	// ErrorCodePd is an ErrorCode of type PD.
-	ErrorCodePd ErrorCode = 4 // 密码错误/未授权
-	// ErrorCodeData is an ErrorCode of type DATA.
-	ErrorCodeData ErrorCode = 2 // 无请求数据
-	// ErrorCodeOther is an ErrorCode of type OTHER.
-	ErrorCodeOther ErrorCode = 1 // 其他错误
+	// ErrorCodeRATE is an ErrorCode of type RATE.
+	ErrorCodeRATE ErrorCode = 64 // 费率数超
+	// ErrorCodeDAY is an ErrorCode of type DAY.
+	ErrorCodeDAY ErrorCode = 32 // 日时段数超
+	// ErrorCodeYEAR is an ErrorCode of type YEAR.
+	ErrorCodeYEAR ErrorCode = 16 // 年时区数超
+	// ErrorCodeBR is an ErrorCode of type BR.
+	ErrorCodeBR ErrorCode = 8 // 通信速率不能更改
+	// ErrorCodePD is an ErrorCode of type PD.
+	ErrorCodePD ErrorCode = 4 // 密码错误/未授权
+	// ErrorCodeDATA is an ErrorCode of type DATA.
+	ErrorCodeDATA ErrorCode = 2 // 无请求数据
+	// ErrorCodeOTHER is an ErrorCode of type OTHER.
+	ErrorCodeOTHER ErrorCode = 1 // 其他错误
 )
 
 const (
@@ -180,19 +180,19 @@ var ErrInvalidCCode = errors.New("not a valid CCode")
 var _CCodeName = "BRCRDRDMRDAWRWRADJBRPDXLDBMSGRR"
 
 var _CCodeMapName = map[CCode]string{
-	CCodeBrc: _CCodeName[0:3],
-	CCodeRd:  _CCodeName[3:5],
-	CCodeRdm: _CCodeName[5:8],
-	CCodeRda: _CCodeName[8:11],
-	CCodeWr:  _CCodeName[11:13],
-	CCodeWra: _CCodeName[13:16],
-	CCodeDj:  _CCodeName[16:18],
-	CCodeBr:  _CCodeName[18:20],
-	CCodePd:  _CCodeName[20:22],
-	CCodeXl:  _CCodeName[22:24],
-	CCodeDb:  _CCodeName[24:26],
-	CCodeMsg: _CCodeName[26:29],
-	CCodeRr:  _CCodeName[29:31],
+	CCodeBRC: _CCodeName[0:3],
+	CCodeRD:  _CCodeName[3:5],
+	CCodeRDM: _CCodeName[5:8],
+	CCodeRDA: _CCodeName[8:11],
+	CCodeWR:  _CCodeName[11:13],
+	CCodeWRA: _CCodeName[13:16],
+	CCodeDJ:  _CCodeName[16:18],
+	CCodeBR:  _CCodeName[18:20],
+	CCodePD:  _CCodeName[20:22],
+	CCodeXL:  _CCodeName[22:24],
+	CCodeDB:  _CCodeName[24:26],
+	CCodeMSG: _CCodeName[26:29],
+	CCodeRR:  _CCodeName[29:31],
 }
 
 // Name is the attribute of CCode.
@@ -204,19 +204,19 @@ func (x CCode) Name() string {
 }
 
 var _CCodeMapOld = map[CCode]uint8{
-	CCodeBrc: 8,
-	CCodeRd:  1,
-	CCodeRdm: 2,
-	CCodeRda: 255,
-	CCodeWr:  4,
-	CCodeWra: 10,
-	CCodeDj:  255,
-	CCodeBr:  12,
-	CCodePd:  15,
-	CCodeXl:  16,
-	CCodeDb:  255,
-	CCodeMsg: 255,
-	CCodeRr:  3,
+	CCodeBRC: 8,
+	CCodeRD:  1,
+	CCodeRDM: 2,
+	CCodeRDA: 255,
+	CCodeWR:  4,
+	CCodeWRA: 10,
+	CCodeDJ:  255,
+	CCodeBR:  12,
+	CCodePD:  15,
+	CCodeXL:  16,
+	CCodeDB:  255,
+	CCodeMSG: 255,
+	CCodeRR:  3,
 }
 
 // Old is the attribute of CCode.
@@ -245,19 +245,19 @@ func (x CCode) String() string {
 }
 
 var _CCodeNameMap = map[string]CCode{
-	_CCodeName[0:3]:   CCodeBrc,
-	_CCodeName[3:5]:   CCodeRd,
-	_CCodeName[5:8]:   CCodeRdm,
-	_CCodeName[8:11]:  CCodeRda,
-	_CCodeName[11:13]: CCodeWr,
-	_CCodeName[13:16]: CCodeWra,
-	_CCodeName[16:18]: CCodeDj,
-	_CCodeName[18:20]: CCodeBr,
-	_CCodeName[20:22]: CCodePd,
-	_CCodeName[22:24]: CCodeXl,
-	_CCodeName[24:26]: CCodeDb,
-	_CCodeName[26:29]: CCodeMsg,
-	_CCodeName[29:31]: CCodeRr,
+	_CCodeName[0:3]:   CCodeBRC,
+	_CCodeName[3:5]:   CCodeRD,
+	_CCodeName[5:8]:   CCodeRDM,
+	_CCodeName[8:11]:  CCodeRDA,
+	_CCodeName[11:13]: CCodeWR,
+	_CCodeName[13:16]: CCodeWRA,
+	_CCodeName[16:18]: CCodeDJ,
+	_CCodeName[18:20]: CCodeBR,
+	_CCodeName[20:22]: CCodePD,
+	_CCodeName[22:24]: CCodeXL,
+	_CCodeName[24:26]: CCodeDB,
+	_CCodeName[26:29]: CCodeMSG,
+	_CCodeName[29:31]: CCodeRR,
 }
 
 // ParseCCode converts a string to a CCode.
@@ -285,37 +285,37 @@ var _DICMapName = map[DIC]string{
 	DICPositiveTotalApparentEnergy:   _DICName[217:244],
 	DICNegativeTotalApparentEnergy:   _DICName[244:271],
 	DICAssociatedTotalElectricEnergy: _DICName[271:300],
-	DICPhaseAvoltage:                 _DICName[300:313],
-	DICPhaseBvoltage:                 _DICName[313:326],
-	DICPhaseCvoltage:                 _DICName[326:339],
+	DICPhaseAVoltage:                 _DICName[300:313],
+	DICPhaseBVoltage:                 _DICName[313:326],
+	DICPhaseCVoltage:                 _DICName[326:339],
 	DICVoltage:                       _DICName[339:346],
-	DICPhaseAcurrent:                 _DICName[346:359],
-	DICPhaseBcurrent:                 _DICName[359:372],
-	DICPhaseCcurrent:                 _DICName[372:385],
+	DICPhaseACurrent:                 _DICName[346:359],
+	DICPhaseBCurrent:                 _DICName[359:372],
+	DICPhaseCCurrent:                 _DICName[372:385],
 	DICCurrent:                       _DICName[385:392],
 	DICTotalActivePower:              _DICName[392:408],
-	DICPhaseAactivePower:             _DICName[408:425],
-	DICPhaseBactivePower:             _DICName[425:442],
-	DICPhaseCactivePower:             _DICName[442:459],
+	DICPhaseAActivePower:             _DICName[408:425],
+	DICPhaseBActivePower:             _DICName[425:442],
+	DICPhaseCActivePower:             _DICName[442:459],
 	DICActivePower:                   _DICName[459:470],
 	DICTotalReactivePower:            _DICName[470:488],
-	DICPhaseAreactivePower:           _DICName[488:507],
-	DICPhaseBreactivePower:           _DICName[507:526],
-	DICPhaseCreactivePower:           _DICName[526:545],
+	DICPhaseAReactivePower:           _DICName[488:507],
+	DICPhaseBReactivePower:           _DICName[507:526],
+	DICPhaseCReactivePower:           _DICName[526:545],
 	DICReactivePower:                 _DICName[545:558],
 	DICTotalApparentPower:            _DICName[558:576],
-	DICPhaseAapparentPower:           _DICName[576:595],
-	DICPhaseBapparentPower:           _DICName[595:614],
-	DICPhaseCapparentPower:           _DICName[614:633],
+	DICPhaseAApparentPower:           _DICName[576:595],
+	DICPhaseBApparentPower:           _DICName[595:614],
+	DICPhaseCApparentPower:           _DICName[614:633],
 	DICApparentPower:                 _DICName[633:646],
 	DICTotalPowerFactor:              _DICName[646:662],
-	DICPhaseApowerFactor:             _DICName[662:679],
-	DICPhaseBpowerFactor:             _DICName[679:696],
-	DICPhaseCpowerFactor:             _DICName[696:713],
+	DICPhaseAPowerFactor:             _DICName[662:679],
+	DICPhaseBPowerFactor:             _DICName[679:696],
+	DICPhaseCPowerFactor:             _DICName[696:713],
 	DICPowerFactor:                   _DICName[713:724],
-	DICAblineVoltage:                 _DICName[724:737],
-	DICBclineVoltage:                 _DICName[737:750],
-	DICCalineVoltage:                 _DICName[750:763],
+	DICABLineVoltage:                 _DICName[724:737],
+	DICBCLineVoltage:                 _DICName[737:750],
+	DICCALineVoltage:                 _DICName[750:763],
 	DICLineVoltage:                   _DICName[763:774],
 	DICFrequency:                     _DICName[774:783],
 	DICTotalOverCurrentCount:         _DICName[783:804],
@@ -349,37 +349,37 @@ var _DICMapOld = map[DIC]uint{
 	DICPositiveTotalApparentEnergy:   4294967295,
 	DICNegativeTotalApparentEnergy:   4294967295,
 	DICAssociatedTotalElectricEnergy: 4294967295,
-	DICPhaseAvoltage:                 46609,
-	DICPhaseBvoltage:                 46610,
-	DICPhaseCvoltage:                 46611,
+	DICPhaseAVoltage:                 46609,
+	DICPhaseBVoltage:                 46610,
+	DICPhaseCVoltage:                 46611,
 	DICVoltage:                       4294967295,
-	DICPhaseAcurrent:                 46625,
-	DICPhaseBcurrent:                 46626,
-	DICPhaseCcurrent:                 46627,
+	DICPhaseACurrent:                 46625,
+	DICPhaseBCurrent:                 46626,
+	DICPhaseCCurrent:                 46627,
 	DICCurrent:                       4294967295,
 	DICTotalActivePower:              46640,
-	DICPhaseAactivePower:             46641,
-	DICPhaseBactivePower:             46642,
-	DICPhaseCactivePower:             46643,
+	DICPhaseAActivePower:             46641,
+	DICPhaseBActivePower:             46642,
+	DICPhaseCActivePower:             46643,
 	DICActivePower:                   4294967295,
 	DICTotalReactivePower:            46656,
-	DICPhaseAreactivePower:           46657,
-	DICPhaseBreactivePower:           46658,
-	DICPhaseCreactivePower:           46659,
+	DICPhaseAReactivePower:           46657,
+	DICPhaseBReactivePower:           46658,
+	DICPhaseCReactivePower:           46659,
 	DICReactivePower:                 4294967295,
 	DICTotalApparentPower:            46688,
-	DICPhaseAapparentPower:           46689,
-	DICPhaseBapparentPower:           46690,
-	DICPhaseCapparentPower:           46691,
+	DICPhaseAApparentPower:           46689,
+	DICPhaseBApparentPower:           46690,
+	DICPhaseCApparentPower:           46691,
 	DICApparentPower:                 4294967295,
 	DICTotalPowerFactor:              4294967295,
-	DICPhaseApowerFactor:             4294967295,
-	DICPhaseBpowerFactor:             4294967295,
-	DICPhaseCpowerFactor:             4294967295,
+	DICPhaseAPowerFactor:             4294967295,
+	DICPhaseBPowerFactor:             4294967295,
+	DICPhaseCPowerFactor:             4294967295,
 	DICPowerFactor:                   4294967295,
-	DICAblineVoltage:                 46737,
-	DICBclineVoltage:                 46738,
-	DICCalineVoltage:                 46739,
+	DICABLineVoltage:                 46737,
+	DICBCLineVoltage:                 46738,
+	DICCALineVoltage:                 46739,
 	DICLineVoltage:                   4294967295,
 	DICFrequency:                     4294967295,
 	DICTotalOverCurrentCount:         4294967295,
@@ -413,37 +413,37 @@ var _DICMapOldFormat = map[DIC]string{
 	DICPositiveTotalApparentEnergy:   "",
 	DICNegativeTotalApparentEnergy:   "",
 	DICAssociatedTotalElectricEnergy: "",
-	DICPhaseAvoltage:                 "XXX",
-	DICPhaseBvoltage:                 "XXX",
-	DICPhaseCvoltage:                 "XXX",
+	DICPhaseAVoltage:                 "XXX",
+	DICPhaseBVoltage:                 "XXX",
+	DICPhaseCVoltage:                 "XXX",
 	DICVoltage:                       "",
-	DICPhaseAcurrent:                 "XX.XX",
-	DICPhaseBcurrent:                 "XX.XX",
-	DICPhaseCcurrent:                 "XX.XX",
+	DICPhaseACurrent:                 "XX.XX",
+	DICPhaseBCurrent:                 "XX.XX",
+	DICPhaseCCurrent:                 "XX.XX",
 	DICCurrent:                       "",
 	DICTotalActivePower:              "XX.XXXX",
-	DICPhaseAactivePower:             "XX.XXXX",
-	DICPhaseBactivePower:             "XX.XXXX",
-	DICPhaseCactivePower:             "XX.XXXX",
+	DICPhaseAActivePower:             "XX.XXXX",
+	DICPhaseBActivePower:             "XX.XXXX",
+	DICPhaseCActivePower:             "XX.XXXX",
 	DICActivePower:                   "",
 	DICTotalReactivePower:            "",
-	DICPhaseAreactivePower:           "",
-	DICPhaseBreactivePower:           "",
-	DICPhaseCreactivePower:           "",
+	DICPhaseAReactivePower:           "",
+	DICPhaseBReactivePower:           "",
+	DICPhaseCReactivePower:           "",
 	DICReactivePower:                 "",
 	DICTotalApparentPower:            "",
-	DICPhaseAapparentPower:           "",
-	DICPhaseBapparentPower:           "",
-	DICPhaseCapparentPower:           "",
+	DICPhaseAApparentPower:           "",
+	DICPhaseBApparentPower:           "",
+	DICPhaseCApparentPower:           "",
 	DICApparentPower:                 "",
 	DICTotalPowerFactor:              "",
-	DICPhaseApowerFactor:             "",
-	DICPhaseBpowerFactor:             "",
-	DICPhaseCpowerFactor:             "",
+	DICPhaseAPowerFactor:             "",
+	DICPhaseBPowerFactor:             "",
+	DICPhaseCPowerFactor:             "",
 	DICPowerFactor:                   "",
-	DICAblineVoltage:                 "XXX",
-	DICBclineVoltage:                 "XXX",
-	DICCalineVoltage:                 "XXX",
+	DICABLineVoltage:                 "XXX",
+	DICBCLineVoltage:                 "XXX",
+	DICCALineVoltage:                 "XXX",
 	DICLineVoltage:                   "",
 	DICFrequency:                     "",
 	DICTotalOverCurrentCount:         "",
@@ -477,37 +477,37 @@ var _DICMapOldSize = map[DIC]int{
 	DICPositiveTotalApparentEnergy:   0,
 	DICNegativeTotalApparentEnergy:   0,
 	DICAssociatedTotalElectricEnergy: 0,
-	DICPhaseAvoltage:                 2,
-	DICPhaseBvoltage:                 2,
-	DICPhaseCvoltage:                 2,
+	DICPhaseAVoltage:                 2,
+	DICPhaseBVoltage:                 2,
+	DICPhaseCVoltage:                 2,
 	DICVoltage:                       0,
-	DICPhaseAcurrent:                 2,
-	DICPhaseBcurrent:                 2,
-	DICPhaseCcurrent:                 2,
+	DICPhaseACurrent:                 2,
+	DICPhaseBCurrent:                 2,
+	DICPhaseCCurrent:                 2,
 	DICCurrent:                       0,
 	DICTotalActivePower:              3,
-	DICPhaseAactivePower:             3,
-	DICPhaseBactivePower:             3,
-	DICPhaseCactivePower:             3,
+	DICPhaseAActivePower:             3,
+	DICPhaseBActivePower:             3,
+	DICPhaseCActivePower:             3,
 	DICActivePower:                   0,
 	DICTotalReactivePower:            0,
-	DICPhaseAreactivePower:           0,
-	DICPhaseBreactivePower:           0,
-	DICPhaseCreactivePower:           0,
+	DICPhaseAReactivePower:           0,
+	DICPhaseBReactivePower:           0,
+	DICPhaseCReactivePower:           0,
 	DICReactivePower:                 0,
 	DICTotalApparentPower:            0,
-	DICPhaseAapparentPower:           0,
-	DICPhaseBapparentPower:           0,
-	DICPhaseCapparentPower:           0,
+	DICPhaseAApparentPower:           0,
+	DICPhaseBApparentPower:           0,
+	DICPhaseCApparentPower:           0,
 	DICApparentPower:                 0,
 	DICTotalPowerFactor:              0,
-	DICPhaseApowerFactor:             0,
-	DICPhaseBpowerFactor:             0,
-	DICPhaseCpowerFactor:             0,
+	DICPhaseAPowerFactor:             0,
+	DICPhaseBPowerFactor:             0,
+	DICPhaseCPowerFactor:             0,
 	DICPowerFactor:                   0,
-	DICAblineVoltage:                 2,
-	DICBclineVoltage:                 2,
-	DICCalineVoltage:                 2,
+	DICABLineVoltage:                 2,
+	DICBCLineVoltage:                 2,
+	DICCALineVoltage:                 2,
 	DICLineVoltage:                   0,
 	DICFrequency:                     0,
 	DICTotalOverCurrentCount:         0,
@@ -541,37 +541,37 @@ var _DICMapFormat = map[DIC]string{
 	DICPositiveTotalApparentEnergy:   "XXXXXX.XX",
 	DICNegativeTotalApparentEnergy:   "XXXXXX.XX",
 	DICAssociatedTotalElectricEnergy: "XXXXXX.XX",
-	DICPhaseAvoltage:                 "XXX.X",
-	DICPhaseBvoltage:                 "XXX.X",
-	DICPhaseCvoltage:                 "XXX.X",
+	DICPhaseAVoltage:                 "XXX.X",
+	DICPhaseBVoltage:                 "XXX.X",
+	DICPhaseCVoltage:                 "XXX.X",
 	DICVoltage:                       "XXX.X",
-	DICPhaseAcurrent:                 "XXX.XXX",
-	DICPhaseBcurrent:                 "XXX.XXX",
-	DICPhaseCcurrent:                 "XXX.XXX",
+	DICPhaseACurrent:                 "XXX.XXX",
+	DICPhaseBCurrent:                 "XXX.XXX",
+	DICPhaseCCurrent:                 "XXX.XXX",
 	DICCurrent:                       "XXX.XXX",
 	DICTotalActivePower:              "XX.XXXX",
-	DICPhaseAactivePower:             "XX.XXXX",
-	DICPhaseBactivePower:             "XX.XXXX",
-	DICPhaseCactivePower:             "XX.XXXX",
+	DICPhaseAActivePower:             "XX.XXXX",
+	DICPhaseBActivePower:             "XX.XXXX",
+	DICPhaseCActivePower:             "XX.XXXX",
 	DICActivePower:                   "XX.XXXX",
 	DICTotalReactivePower:            "XX.XXXX",
-	DICPhaseAreactivePower:           "XX.XXXX",
-	DICPhaseBreactivePower:           "XX.XXXX",
-	DICPhaseCreactivePower:           "XX.XXXX",
+	DICPhaseAReactivePower:           "XX.XXXX",
+	DICPhaseBReactivePower:           "XX.XXXX",
+	DICPhaseCReactivePower:           "XX.XXXX",
 	DICReactivePower:                 "XX.XXXX",
 	DICTotalApparentPower:            "XX.XXXX",
-	DICPhaseAapparentPower:           "XX.XXXX",
-	DICPhaseBapparentPower:           "XX.XXXX",
-	DICPhaseCapparentPower:           "XX.XXXX",
+	DICPhaseAApparentPower:           "XX.XXXX",
+	DICPhaseBApparentPower:           "XX.XXXX",
+	DICPhaseCApparentPower:           "XX.XXXX",
 	DICApparentPower:                 "XX.XXXX",
 	DICTotalPowerFactor:              "X.XXX",
-	DICPhaseApowerFactor:             "X.XXX",
-	DICPhaseBpowerFactor:             "X.XXX",
-	DICPhaseCpowerFactor:             "X.XXX",
+	DICPhaseAPowerFactor:             "X.XXX",
+	DICPhaseBPowerFactor:             "X.XXX",
+	DICPhaseCPowerFactor:             "X.XXX",
 	DICPowerFactor:                   "X.XXX",
-	DICAblineVoltage:                 "XXX.X",
-	DICBclineVoltage:                 "XXX.X",
-	DICCalineVoltage:                 "XXX.X",
+	DICABLineVoltage:                 "XXX.X",
+	DICBCLineVoltage:                 "XXX.X",
+	DICCALineVoltage:                 "XXX.X",
 	DICLineVoltage:                   "XXX.X",
 	DICFrequency:                     "XX.XX",
 	DICTotalOverCurrentCount:         "XXXXXX, XXXXXX",
@@ -605,37 +605,37 @@ var _DICMapSize = map[DIC]int{
 	DICPositiveTotalApparentEnergy:   4,
 	DICNegativeTotalApparentEnergy:   4,
 	DICAssociatedTotalElectricEnergy: 4,
-	DICPhaseAvoltage:                 2,
-	DICPhaseBvoltage:                 2,
-	DICPhaseCvoltage:                 2,
+	DICPhaseAVoltage:                 2,
+	DICPhaseBVoltage:                 2,
+	DICPhaseCVoltage:                 2,
 	DICVoltage:                       2,
-	DICPhaseAcurrent:                 3,
-	DICPhaseBcurrent:                 3,
-	DICPhaseCcurrent:                 3,
+	DICPhaseACurrent:                 3,
+	DICPhaseBCurrent:                 3,
+	DICPhaseCCurrent:                 3,
 	DICCurrent:                       3,
 	DICTotalActivePower:              3,
-	DICPhaseAactivePower:             3,
-	DICPhaseBactivePower:             3,
-	DICPhaseCactivePower:             3,
+	DICPhaseAActivePower:             3,
+	DICPhaseBActivePower:             3,
+	DICPhaseCActivePower:             3,
 	DICActivePower:                   3,
 	DICTotalReactivePower:            3,
-	DICPhaseAreactivePower:           3,
-	DICPhaseBreactivePower:           3,
-	DICPhaseCreactivePower:           3,
+	DICPhaseAReactivePower:           3,
+	DICPhaseBReactivePower:           3,
+	DICPhaseCReactivePower:           3,
 	DICReactivePower:                 3,
 	DICTotalApparentPower:            3,
-	DICPhaseAapparentPower:           3,
-	DICPhaseBapparentPower:           3,
-	DICPhaseCapparentPower:           3,
+	DICPhaseAApparentPower:           3,
+	DICPhaseBApparentPower:           3,
+	DICPhaseCApparentPower:           3,
 	DICApparentPower:                 3,
 	DICTotalPowerFactor:              2,
-	DICPhaseApowerFactor:             2,
-	DICPhaseBpowerFactor:             2,
-	DICPhaseCpowerFactor:             2,
+	DICPhaseAPowerFactor:             2,
+	DICPhaseBPowerFactor:             2,
+	DICPhaseCPowerFactor:             2,
 	DICPowerFactor:                   2,
-	DICAblineVoltage:                 2,
-	DICBclineVoltage:                 2,
-	DICCalineVoltage:                 2,
+	DICABLineVoltage:                 2,
+	DICBCLineVoltage:                 2,
+	DICCALineVoltage:                 2,
 	DICLineVoltage:                   2,
 	DICFrequency:                     2,
 	DICTotalOverCurrentCount:         6,
@@ -669,37 +669,37 @@ var _DICMapUnit = map[DIC]string{
 	DICPositiveTotalApparentEnergy:   "KVAh",
 	DICNegativeTotalApparentEnergy:   "KVAh",
 	DICAssociatedTotalElectricEnergy: "KVh",
-	DICPhaseAvoltage:                 "V",
-	DICPhaseBvoltage:                 "V",
-	DICPhaseCvoltage:                 "V",
+	DICPhaseAVoltage:                 "V",
+	DICPhaseBVoltage:                 "V",
+	DICPhaseCVoltage:                 "V",
 	DICVoltage:                       "V",
-	DICPhaseAcurrent:                 "A",
-	DICPhaseBcurrent:                 "A",
-	DICPhaseCcurrent:                 "A",
+	DICPhaseACurrent:                 "A",
+	DICPhaseBCurrent:                 "A",
+	DICPhaseCCurrent:                 "A",
 	DICCurrent:                       "A",
 	DICTotalActivePower:              "kW",
-	DICPhaseAactivePower:             "kW",
-	DICPhaseBactivePower:             "kW",
-	DICPhaseCactivePower:             "kW",
+	DICPhaseAActivePower:             "kW",
+	DICPhaseBActivePower:             "kW",
+	DICPhaseCActivePower:             "kW",
 	DICActivePower:                   "kW",
 	DICTotalReactivePower:            "kvar",
-	DICPhaseAreactivePower:           "kvar",
-	DICPhaseBreactivePower:           "kvar",
-	DICPhaseCreactivePower:           "kvar",
+	DICPhaseAReactivePower:           "kvar",
+	DICPhaseBReactivePower:           "kvar",
+	DICPhaseCReactivePower:           "kvar",
 	DICReactivePower:                 "kvar",
 	DICTotalApparentPower:            "kVA",
-	DICPhaseAapparentPower:           "kVA",
-	DICPhaseBapparentPower:           "kVA",
-	DICPhaseCapparentPower:           "kVA",
+	DICPhaseAApparentPower:           "kVA",
+	DICPhaseBApparentPower:           "kVA",
+	DICPhaseCApparentPower:           "kVA",
 	DICApparentPower:                 "kVA",
 	DICTotalPowerFactor:              "",
-	DICPhaseApowerFactor:             "",
-	DICPhaseBpowerFactor:             "",
-	DICPhaseCpowerFactor:             "",
+	DICPhaseAPowerFactor:             "",
+	DICPhaseBPowerFactor:             "",
+	DICPhaseCPowerFactor:             "",
 	DICPowerFactor:                   "",
-	DICAblineVoltage:                 "V",
-	DICBclineVoltage:                 "V",
-	DICCalineVoltage:                 "V",
+	DICABLineVoltage:                 "V",
+	DICBCLineVoltage:                 "V",
+	DICCALineVoltage:                 "V",
 	DICLineVoltage:                   "V",
 	DICFrequency:                     "Hz",
 	DICTotalOverCurrentCount:         "次,分",
@@ -750,37 +750,37 @@ var _DICNameMap = map[string]DIC{
 	_DICName[217:244]: DICPositiveTotalApparentEnergy,
 	_DICName[244:271]: DICNegativeTotalApparentEnergy,
 	_DICName[271:300]: DICAssociatedTotalElectricEnergy,
-	_DICName[300:313]: DICPhaseAvoltage,
-	_DICName[313:326]: DICPhaseBvoltage,
-	_DICName[326:339]: DICPhaseCvoltage,
+	_DICName[300:313]: DICPhaseAVoltage,
+	_DICName[313:326]: DICPhaseBVoltage,
+	_DICName[326:339]: DICPhaseCVoltage,
 	_DICName[339:346]: DICVoltage,
-	_DICName[346:359]: DICPhaseAcurrent,
-	_DICName[359:372]: DICPhaseBcurrent,
-	_DICName[372:385]: DICPhaseCcurrent,
+	_DICName[346:359]: DICPhaseACurrent,
+	_DICName[359:372]: DICPhaseBCurrent,
+	_DICName[372:385]: DICPhaseCCurrent,
 	_DICName[385:392]: DICCurrent,
 	_DICName[392:408]: DICTotalActivePower,
-	_DICName[408:425]: DICPhaseAactivePower,
-	_DICName[425:442]: DICPhaseBactivePower,
-	_DICName[442:459]: DICPhaseCactivePower,
+	_DICName[408:425]: DICPhaseAActivePower,
+	_DICName[425:442]: DICPhaseBActivePower,
+	_DICName[442:459]: DICPhaseCActivePower,
 	_DICName[459:470]: DICActivePower,
 	_DICName[470:488]: DICTotalReactivePower,
-	_DICName[488:507]: DICPhaseAreactivePower,
-	_DICName[507:526]: DICPhaseBreactivePower,
-	_DICName[526:545]: DICPhaseCreactivePower,
+	_DICName[488:507]: DICPhaseAReactivePower,
+	_DICName[507:526]: DICPhaseBReactivePower,
+	_DICName[526:545]: DICPhaseCReactivePower,
 	_DICName[545:558]: DICReactivePower,
 	_DICName[558:576]: DICTotalApparentPower,
-	_DICName[576:595]: DICPhaseAapparentPower,
-	_DICName[595:614]: DICPhaseBapparentPower,
-	_DICName[614:633]: DICPhaseCapparentPower,
+	_DICName[576:595]: DICPhaseAApparentPower,
+	_DICName[595:614]: DICPhaseBApparentPower,
+	_DICName[614:633]: DICPhaseCApparentPower,
 	_DICName[633:646]: DICApparentPower,
 	_DICName[646:662]: DICTotalPowerFactor,
-	_DICName[662:679]: DICPhaseApowerFactor,
-	_DICName[679:696]: DICPhaseBpowerFactor,
-	_DICName[696:713]: DICPhaseCpowerFactor,
+	_DICName[662:679]: DICPhaseAPowerFactor,
+	_DICName[679:696]: DICPhaseBPowerFactor,
+	_DICName[696:713]: DICPhaseCPowerFactor,
 	_DICName[713:724]: DICPowerFactor,
-	_DICName[724:737]: DICAblineVoltage,
-	_DICName[737:750]: DICBclineVoltage,
-	_DICName[750:763]: DICCalineVoltage,
+	_DICName[724:737]: DICABLineVoltage,
+	_DICName[737:750]: DICBCLineVoltage,
+	_DICName[750:763]: DICCALineVoltage,
 	_DICName[763:774]: DICLineVoltage,
 	_DICName[774:783]: DICFrequency,
 	_DICName[783:804]: DICTotalOverCurrentCount,
@@ -806,13 +806,13 @@ var ErrInvalidErrorCode = errors.New("not a valid ErrorCode")
 var _ErrorCodeName = "RATEDAYYEARBRPDDATAOTHER"
 
 var _ErrorCodeMapName = map[ErrorCode]string{
-	ErrorCodeRate:  _ErrorCodeName[0:4],
-	ErrorCodeDay:   _ErrorCodeName[4:7],
-	ErrorCodeYear:  _ErrorCodeName[7:11],
-	ErrorCodeBr:    _ErrorCodeName[11:13],
-	ErrorCodePd:    _ErrorCodeName[13:15],
-	ErrorCodeData:  _ErrorCodeName[15:19],
-	ErrorCodeOther: _ErrorCodeName[19:24],
+	ErrorCodeRATE:  _ErrorCodeName[0:4],
+	ErrorCodeDAY:   _ErrorCodeName[4:7],
+	ErrorCodeYEAR:  _ErrorCodeName[7:11],
+	ErrorCodeBR:    _ErrorCodeName[11:13],
+	ErrorCodePD:    _ErrorCodeName[13:15],
+	ErrorCodeDATA:  _ErrorCodeName[15:19],
+	ErrorCodeOTHER: _ErrorCodeName[19:24],
 }
 
 // Name is the attribute of ErrorCode.
@@ -824,13 +824,13 @@ func (x ErrorCode) Name() string {
 }
 
 var _ErrorCodeMapOld = map[ErrorCode]uint8{
-	ErrorCodeRate:  64,
-	ErrorCodeDay:   32,
-	ErrorCodeYear:  16,
-	ErrorCodeBr:    8,
-	ErrorCodePd:    4,
-	ErrorCodeData:  2,
-	ErrorCodeOther: 1,
+	ErrorCodeRATE:  64,
+	ErrorCodeDAY:   32,
+	ErrorCodeYEAR:  16,
+	ErrorCodeBR:    8,
+	ErrorCodePD:    4,
+	ErrorCodeDATA:  2,
+	ErrorCodeOTHER: 1,
 }
 
 // Old is the attribute of ErrorCode.
@@ -859,13 +859,13 @@ func (x ErrorCode) String() string {
 }
 
 var _ErrorCodeNameMap = map[string]ErrorCode{
-	_ErrorCodeName[0:4]:   ErrorCodeRate,
-	_ErrorCodeName[4:7]:   ErrorCodeDay,
-	_ErrorCodeName[7:11]:  ErrorCodeYear,
-	_ErrorCodeName[11:13]: ErrorCodeBr,
-	_ErrorCodeName[13:15]: ErrorCodePd,
-	_ErrorCodeName[15:19]: ErrorCodeData,
-	_ErrorCodeName[19:24]: ErrorCodeOther,
+	_ErrorCodeName[0:4]:   ErrorCodeRATE,
+	_ErrorCodeName[4:7]:   ErrorCodeDAY,
+	_ErrorCodeName[7:11]:  ErrorCodeYEAR,
+	_ErrorCodeName[11:13]: ErrorCodeBR,
+	_ErrorCodeName[13:15]: ErrorCodePD,
+	_ErrorCodeName[15:19]: ErrorCodeDATA,
+	_ErrorCodeName[19:24]: ErrorCodeOTHER,
 }
 
 // ParseErrorCode converts a string to an ErrorCode.

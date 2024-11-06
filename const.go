@@ -1,5 +1,6 @@
 package dlt645
 
+// @EnumConfig(noCamel)
 //go:generate ag
 
 const (
