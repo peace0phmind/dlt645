@@ -7,35 +7,36 @@ package dlt645
 import (
 	"errors"
 	"fmt"
+	"strings"
 )
 
 const (
-	// CCodeBRC is a CCode of type BRC.
-	CCodeBRC CCode = 8 // 广播校时
-	// CCodeRD is a CCode of type RD.
-	CCodeRD CCode = 17 // 读数据
-	// CCodeRDM is a CCode of type RDM.
-	CCodeRDM CCode = 18 // 读后续数据
-	// CCodeRDA is a CCode of type RDA.
-	CCodeRDA CCode = 19 // 读通信地址
-	// CCodeWR is a CCode of type WR.
-	CCodeWR CCode = 20 // 写数据
-	// CCodeWRA is a CCode of type WRA.
-	CCodeWRA CCode = 21 // 写通信地址
-	// CCodeDJ is a CCode of type DJ.
-	CCodeDJ CCode = 22 // 冻结命令
-	// CCodeBR is a CCode of type BR.
-	CCodeBR CCode = 23 // 更改通信速率
-	// CCodePD is a CCode of type PD.
-	CCodePD CCode = 24 // 修改密码
-	// CCodeXL is a CCode of type XL.
-	CCodeXL CCode = 25 // 最大需量清零
-	// CCodeDB is a CCode of type DB.
-	CCodeDB CCode = 26 // 电表清零
-	// CCodeMSG is a CCode of type MSG.
-	CCodeMSG CCode = 27 // 事件清零
-	// CCodeRR is a CCode of type RR.
-	CCodeRR CCode = 255 // 重读数据
+	// CBRC is a C of type BRC.
+	CBRC C = 8 // 广播校时
+	// CRD is a C of type RD.
+	CRD C = 17 // 读数据
+	// CRDM is a C of type RDM.
+	CRDM C = 18 // 读后续数据
+	// CRDA is a C of type RDA.
+	CRDA C = 19 // 读通信地址
+	// CWR is a C of type WR.
+	CWR C = 20 // 写数据
+	// CWRA is a C of type WRA.
+	CWRA C = 21 // 写通信地址
+	// CDJ is a C of type DJ.
+	CDJ C = 22 // 冻结命令
+	// CBR is a C of type BR.
+	CBR C = 23 // 更改通信速率
+	// CPD is a C of type PD.
+	CPD C = 24 // 修改密码
+	// CXL is a C of type XL.
+	CXL C = 25 // 最大需量清零
+	// CDB is a C of type DB.
+	CDB C = 26 // 电表清零
+	// CMSG is a C of type MSG.
+	CMSG C = 27 // 事件清零
+	// CRR is a C of type RR.
+	CRR C = 255 // 重读数据
 )
 
 const (
@@ -175,97 +176,110 @@ const (
 	PV2007
 )
 
-var ErrInvalidCCode = errors.New("not a valid CCode")
+const (
+	// StateUnknown is a State of type Unknown.
+	StateUnknown State = iota
+	// StateConnecting is a State of type Connecting.
+	StateConnecting
+	// StateConnected is a State of type Connected.
+	StateConnected
+	// StateDisconnected is a State of type Disconnected.
+	StateDisconnected
+	// StateConnectClosed is a State of type ConnectClosed.
+	StateConnectClosed
+)
 
-var _CCodeName = "BRCRDRDMRDAWRWRADJBRPDXLDBMSGRR"
+var ErrInvalidC = errors.New("not a valid C")
 
-var _CCodeMapName = map[CCode]string{
-	CCodeBRC: _CCodeName[0:3],
-	CCodeRD:  _CCodeName[3:5],
-	CCodeRDM: _CCodeName[5:8],
-	CCodeRDA: _CCodeName[8:11],
-	CCodeWR:  _CCodeName[11:13],
-	CCodeWRA: _CCodeName[13:16],
-	CCodeDJ:  _CCodeName[16:18],
-	CCodeBR:  _CCodeName[18:20],
-	CCodePD:  _CCodeName[20:22],
-	CCodeXL:  _CCodeName[22:24],
-	CCodeDB:  _CCodeName[24:26],
-	CCodeMSG: _CCodeName[26:29],
-	CCodeRR:  _CCodeName[29:31],
+var _CName = "BRCRDRDMRDAWRWRADJBRPDXLDBMSGRR"
+
+var _CMapName = map[C]string{
+	CBRC: _CName[0:3],
+	CRD:  _CName[3:5],
+	CRDM: _CName[5:8],
+	CRDA: _CName[8:11],
+	CWR:  _CName[11:13],
+	CWRA: _CName[13:16],
+	CDJ:  _CName[16:18],
+	CBR:  _CName[18:20],
+	CPD:  _CName[20:22],
+	CXL:  _CName[22:24],
+	CDB:  _CName[24:26],
+	CMSG: _CName[26:29],
+	CRR:  _CName[29:31],
 }
 
-// Name is the attribute of CCode.
-func (x CCode) Name() string {
-	if v, ok := _CCodeMapName[x]; ok {
+// Name is the attribute of C.
+func (x C) Name() string {
+	if v, ok := _CMapName[x]; ok {
 		return v
 	}
-	return fmt.Sprintf("CCode(%d).Name", x)
+	return fmt.Sprintf("C(%d).Name", x)
 }
 
-var _CCodeMapOld = map[CCode]uint8{
-	CCodeBRC: 8,
-	CCodeRD:  1,
-	CCodeRDM: 2,
-	CCodeRDA: 255,
-	CCodeWR:  4,
-	CCodeWRA: 10,
-	CCodeDJ:  255,
-	CCodeBR:  12,
-	CCodePD:  15,
-	CCodeXL:  16,
-	CCodeDB:  255,
-	CCodeMSG: 255,
-	CCodeRR:  3,
+var _CMapOld = map[C]uint8{
+	CBRC: 8,
+	CRD:  1,
+	CRDM: 2,
+	CRDA: 255,
+	CWR:  4,
+	CWRA: 10,
+	CDJ:  255,
+	CBR:  12,
+	CPD:  15,
+	CXL:  16,
+	CDB:  255,
+	CMSG: 255,
+	CRR:  3,
 }
 
-// Old is the attribute of CCode.
-func (x CCode) Old() uint8 {
-	if v, ok := _CCodeMapOld[x]; ok {
+// Old is the attribute of C.
+func (x C) Old() uint8 {
+	if v, ok := _CMapOld[x]; ok {
 		return v
 	}
 	return 0
 }
 
-// Val is the attribute of CCode.
-func (x CCode) Val() uint8 {
+// Val is the attribute of C.
+func (x C) Val() uint8 {
 	return uint8(x)
 }
 
 // IsValid provides a quick way to determine if the typed value is
 // part of the allowed enumerated values
-func (x CCode) IsValid() bool {
-	_, ok := _CCodeMapName[x]
+func (x C) IsValid() bool {
+	_, ok := _CMapName[x]
 	return ok
 }
 
 // String implements the Stringer interface.
-func (x CCode) String() string {
+func (x C) String() string {
 	return x.Name()
 }
 
-var _CCodeNameMap = map[string]CCode{
-	_CCodeName[0:3]:   CCodeBRC,
-	_CCodeName[3:5]:   CCodeRD,
-	_CCodeName[5:8]:   CCodeRDM,
-	_CCodeName[8:11]:  CCodeRDA,
-	_CCodeName[11:13]: CCodeWR,
-	_CCodeName[13:16]: CCodeWRA,
-	_CCodeName[16:18]: CCodeDJ,
-	_CCodeName[18:20]: CCodeBR,
-	_CCodeName[20:22]: CCodePD,
-	_CCodeName[22:24]: CCodeXL,
-	_CCodeName[24:26]: CCodeDB,
-	_CCodeName[26:29]: CCodeMSG,
-	_CCodeName[29:31]: CCodeRR,
+var _CNameMap = map[string]C{
+	_CName[0:3]:   CBRC,
+	_CName[3:5]:   CRD,
+	_CName[5:8]:   CRDM,
+	_CName[8:11]:  CRDA,
+	_CName[11:13]: CWR,
+	_CName[13:16]: CWRA,
+	_CName[16:18]: CDJ,
+	_CName[18:20]: CBR,
+	_CName[20:22]: CPD,
+	_CName[22:24]: CXL,
+	_CName[24:26]: CDB,
+	_CName[26:29]: CMSG,
+	_CName[29:31]: CRR,
 }
 
-// ParseCCode converts a string to a CCode.
-func ParseCCode(value string) (CCode, error) {
-	if x, ok := _CCodeNameMap[value]; ok {
+// ParseC converts a string to a C.
+func ParseC(value string) (C, error) {
+	if x, ok := _CNameMap[value]; ok {
 		return x, nil
 	}
-	return CCode(0), fmt.Errorf("%s is %w", value, ErrInvalidCCode)
+	return C(0), fmt.Errorf("%s is %w", value, ErrInvalidC)
 }
 
 var ErrInvalidDIC = errors.New("not a valid DIC")
@@ -336,64 +350,64 @@ func (x DIC) Name() string {
 	return fmt.Sprintf("DIC(%d).Name", x)
 }
 
-var _DICMapOld = map[DIC]uint{
-	DICTotalActiveEnergy:             4294967295,
-	DICPositiveTotalActiveEnergy:     4294967295,
-	DICNegativeTotalActiveEnergy:     4294967295,
-	DICTotalReactiveEnergy1:          4294967295,
-	DICTotalReactiveEnergy2:          4294967295,
-	DICFirstQuadrantReactiveEnergy:   4294967295,
-	DICSecondQuadrantReactiveEnergy:  4294967295,
-	DICThirdQuadrantReactiveEnergy:   4294967295,
-	DICFourthQuadrantReactiveEnergy:  4294967295,
-	DICPositiveTotalApparentEnergy:   4294967295,
-	DICNegativeTotalApparentEnergy:   4294967295,
-	DICAssociatedTotalElectricEnergy: 4294967295,
+var _DICMapOld = map[DIC]uint16{
+	DICTotalActiveEnergy:             65535,
+	DICPositiveTotalActiveEnergy:     65535,
+	DICNegativeTotalActiveEnergy:     65535,
+	DICTotalReactiveEnergy1:          65535,
+	DICTotalReactiveEnergy2:          65535,
+	DICFirstQuadrantReactiveEnergy:   65535,
+	DICSecondQuadrantReactiveEnergy:  65535,
+	DICThirdQuadrantReactiveEnergy:   65535,
+	DICFourthQuadrantReactiveEnergy:  65535,
+	DICPositiveTotalApparentEnergy:   65535,
+	DICNegativeTotalApparentEnergy:   65535,
+	DICAssociatedTotalElectricEnergy: 65535,
 	DICPhaseAVoltage:                 46609,
 	DICPhaseBVoltage:                 46610,
 	DICPhaseCVoltage:                 46611,
-	DICVoltage:                       4294967295,
+	DICVoltage:                       65535,
 	DICPhaseACurrent:                 46625,
 	DICPhaseBCurrent:                 46626,
 	DICPhaseCCurrent:                 46627,
-	DICCurrent:                       4294967295,
+	DICCurrent:                       65535,
 	DICTotalActivePower:              46640,
 	DICPhaseAActivePower:             46641,
 	DICPhaseBActivePower:             46642,
 	DICPhaseCActivePower:             46643,
-	DICActivePower:                   4294967295,
+	DICActivePower:                   65535,
 	DICTotalReactivePower:            46656,
 	DICPhaseAReactivePower:           46657,
 	DICPhaseBReactivePower:           46658,
 	DICPhaseCReactivePower:           46659,
-	DICReactivePower:                 4294967295,
+	DICReactivePower:                 65535,
 	DICTotalApparentPower:            46688,
 	DICPhaseAApparentPower:           46689,
 	DICPhaseBApparentPower:           46690,
 	DICPhaseCApparentPower:           46691,
-	DICApparentPower:                 4294967295,
-	DICTotalPowerFactor:              4294967295,
-	DICPhaseAPowerFactor:             4294967295,
-	DICPhaseBPowerFactor:             4294967295,
-	DICPhaseCPowerFactor:             4294967295,
-	DICPowerFactor:                   4294967295,
+	DICApparentPower:                 65535,
+	DICTotalPowerFactor:              65535,
+	DICPhaseAPowerFactor:             65535,
+	DICPhaseBPowerFactor:             65535,
+	DICPhaseCPowerFactor:             65535,
+	DICPowerFactor:                   65535,
 	DICABLineVoltage:                 46737,
 	DICBCLineVoltage:                 46738,
 	DICCALineVoltage:                 46739,
-	DICLineVoltage:                   4294967295,
-	DICFrequency:                     4294967295,
-	DICTotalOverCurrentCount:         4294967295,
-	DICTotalMeterResetCount:          4294967295,
-	DICMeterResetRecord:              4294967295,
-	DICDateTime:                      4294967295,
-	DICTime:                          4294967295,
-	DICAssetManagementCode:           4294967295,
-	DICActiveConstant:                4294967295,
-	DICReactiveConstant:              4294967295,
+	DICLineVoltage:                   65535,
+	DICFrequency:                     65535,
+	DICTotalOverCurrentCount:         65535,
+	DICTotalMeterResetCount:          65535,
+	DICMeterResetRecord:              65535,
+	DICDateTime:                      65535,
+	DICTime:                          65535,
+	DICAssetManagementCode:           65535,
+	DICActiveConstant:                65535,
+	DICReactiveConstant:              65535,
 }
 
 // Old is the attribute of DIC.
-func (x DIC) Old() uint {
+func (x DIC) Old() uint16 {
 	if v, ok := _DICMapOld[x]; ok {
 		return v
 	}
@@ -528,7 +542,7 @@ func (x DIC) OldSize() int {
 	return 0
 }
 
-var _DICMapFormat = map[DIC]string{
+var _DICMapNewFormat = map[DIC]string{
 	DICTotalActiveEnergy:             "XXXXXX.XX",
 	DICPositiveTotalActiveEnergy:     "XXXXXX.XX",
 	DICNegativeTotalActiveEnergy:     "XXXXXX.XX",
@@ -584,15 +598,15 @@ var _DICMapFormat = map[DIC]string{
 	DICReactiveConstant:              "XXXXXX",
 }
 
-// Format is the attribute of DIC.
-func (x DIC) Format() string {
-	if v, ok := _DICMapFormat[x]; ok {
+// NewFormat is the attribute of DIC.
+func (x DIC) NewFormat() string {
+	if v, ok := _DICMapNewFormat[x]; ok {
 		return v
 	}
-	return fmt.Sprintf("DIC(%d).Format", x)
+	return fmt.Sprintf("DIC(%d).NewFormat", x)
 }
 
-var _DICMapSize = map[DIC]int{
+var _DICMapNewSize = map[DIC]int{
 	DICTotalActiveEnergy:             4,
 	DICPositiveTotalActiveEnergy:     4,
 	DICNegativeTotalActiveEnergy:     4,
@@ -648,9 +662,9 @@ var _DICMapSize = map[DIC]int{
 	DICReactiveConstant:              3,
 }
 
-// Size is the attribute of DIC.
-func (x DIC) Size() int {
-	if v, ok := _DICMapSize[x]; ok {
+// NewSize is the attribute of DIC.
+func (x DIC) NewSize() int {
+	if v, ok := _DICMapNewSize[x]; ok {
 		return v
 	}
 	return 0
@@ -721,8 +735,8 @@ func (x DIC) Unit() string {
 }
 
 // Val is the attribute of DIC.
-func (x DIC) Val() uint {
-	return uint(x)
+func (x DIC) Val() uint32 {
+	return uint32(x)
 }
 
 // IsValid provides a quick way to determine if the typed value is
@@ -934,4 +948,80 @@ func ParseP(value string) (P, error) {
 		return x, nil
 	}
 	return P(0), fmt.Errorf("%s is %w", value, ErrInvalidP)
+}
+
+var ErrInvalidState = errors.New("not a valid State")
+
+var _StateName = "UnknownConnectingConnectedDisconnectedConnectClosed"
+
+var _StateMapName = map[State]string{
+	StateUnknown:       _StateName[0:7],
+	StateConnecting:    _StateName[7:17],
+	StateConnected:     _StateName[17:26],
+	StateDisconnected:  _StateName[26:38],
+	StateConnectClosed: _StateName[38:51],
+}
+
+// Name is the attribute of State.
+func (x State) Name() string {
+	if v, ok := _StateMapName[x]; ok {
+		return v
+	}
+	return fmt.Sprintf("State(%d).Name", x)
+}
+
+// Val is the attribute of State.
+func (x State) Val() int {
+	return int(x)
+}
+
+// IsValid provides a quick way to determine if the typed value is
+// part of the allowed enumerated values
+func (x State) IsValid() bool {
+	_, ok := _StateMapName[x]
+	return ok
+}
+
+// String implements the Stringer interface.
+func (x State) String() string {
+	return x.Name()
+}
+
+var _StateNameMap = map[string]State{
+	_StateName[0:7]:                    StateUnknown,
+	strings.ToLower(_StateName[0:7]):   StateUnknown,
+	_StateName[7:17]:                   StateConnecting,
+	strings.ToLower(_StateName[7:17]):  StateConnecting,
+	_StateName[17:26]:                  StateConnected,
+	strings.ToLower(_StateName[17:26]): StateConnected,
+	_StateName[26:38]:                  StateDisconnected,
+	strings.ToLower(_StateName[26:38]): StateDisconnected,
+	_StateName[38:51]:                  StateConnectClosed,
+	strings.ToLower(_StateName[38:51]): StateConnectClosed,
+}
+
+// ParseState converts a string to a State.
+func ParseState(value string) (State, error) {
+	if x, ok := _StateNameMap[value]; ok {
+		return x, nil
+	}
+	if x, ok := _StateNameMap[strings.ToLower(value)]; ok {
+		return x, nil
+	}
+	return State(0), fmt.Errorf("%s is %w", value, ErrInvalidState)
+}
+
+// MarshalText implements the text marshaller method.
+func (x State) MarshalText() ([]byte, error) {
+	return []byte(x.String()), nil
+}
+
+// UnmarshalText implements the text unmarshaller method.
+func (x *State) UnmarshalText(text []byte) error {
+	val, err := ParseState(string(text))
+	if err != nil {
+		return err
+	}
+	*x = val
+	return nil
 }

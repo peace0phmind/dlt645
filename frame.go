@@ -1,15 +1,19 @@
 package dlt645
 
 import (
+	"errors"
 	"fmt"
+	"github.com/expgo/factory"
 	"github.com/shopspring/decimal"
-	"math"
 	"strings"
 )
 
 const (
 	MAX_ADDRESS_LENGTH = 12
 	DATA_MASK          = 0x33
+	FRAME_HEADER_LEN   = 10
+	FrameStartByte     = 0x68
+	FrameEndByte       = 0x16
 )
 
 var (
@@ -18,7 +22,7 @@ var (
 
 type Code byte
 
-func NewCode(cc CCode) Code {
+func NewCode(cc C) Code {
 	return Code(cc.Val())
 }
 
@@ -37,14 +41,14 @@ func (c Code) HasMore() bool {
 }
 
 type Frame struct {
-	Start      byte    `value:"0x68"` // 帧起始符
-	Address    [6]byte // 地址域
-	FrameStart byte    `value:"0x68"` // 帧起始符
-	C          Code    // 控制码
-	L          byte    // 数据域长度
-	Data       []byte  // 数据域
-	CS         byte    // 校验码
-	End        byte    `value:"0x16"` // 帧结束符
+	Start   byte    `value:"0x68"` // 帧起始符
+	Address [6]byte // 地址域
+	AddrEnd byte    `value:"0x68"` // 帧起始符
+	C       Code    // 控制码
+	L       byte    // 数据域长度
+	Data    []byte  // 数据域
+	CS      byte    // 校验码
+	End     byte    `value:"0x16"` // 帧结束符
 }
 
 func (f *Frame) SetBroadcastAddress() {
@@ -92,64 +96,8 @@ func (f *Frame) SetAddress(address string, isCompressed bool) error {
 }
 
 func (f *Frame) GetAddress() string {
-	address := f.bcdToUint(f.Address[:], MAX_ADDRESS_LENGTH/2)
+	address := bcdToUint(f.Address[:], MAX_ADDRESS_LENGTH/2)
 	return fmt.Sprintf("%d", address)
-}
-
-func (f *Frame) decimalDigits(value uint64) int {
-	if value == 0 {
-		return 1 // 特殊情况，0的位数是1
-	}
-
-	return int(math.Floor(math.Log10(float64(value)))) + 1
-}
-
-func (f *Frame) uintToBcd(value uint64, bufSize int) []byte {
-	valueDigits := f.decimalDigits(value)
-	if bufSize*2 < valueDigits {
-		panic(fmt.Errorf("buffer size is less than %d bytes", valueDigits))
-	}
-
-	buf := make([]byte, bufSize)
-
-	for i := 0; i < valueDigits; i++ {
-		nibble := byte(value % 10)
-		value = value / 10
-		if i%2 != 0 {
-			buf[i/2] |= nibble << 4
-		} else {
-			buf[i/2] |= nibble
-		}
-	}
-
-	return buf
-}
-
-func (f *Frame) bcdToUint(data []byte, len int) (ret uint64) {
-	base := uint64(0)
-
-	for i := len*2 - 1; i >= 0; i-- {
-		nibble := byte(0)
-		if i%2 == 0 {
-			nibble = data[i/2] & 0x0F
-		} else {
-			nibble = (data[i/2] >> 4) & 0x0F
-		}
-
-		// fix address compression prefix
-		if nibble == 0x0A {
-			nibble = 0
-		}
-
-		if base > 0 || nibble != 0 {
-			ret = ret*base + uint64(nibble)
-			if base == 0 {
-				base = 10
-			}
-		}
-	}
-
-	return ret
 }
 
 func (f *Frame) DataAddMask() {
@@ -164,32 +112,111 @@ func (f *Frame) DataCleanMask() {
 	}
 }
 
-func (f *Frame) GetValue(buf []byte, dic DIC) *DLT645Value {
-	ret := &DLT645Value{}
+func (f *Frame) GetValue(buf []byte, dic DIC, protocol P) *Value {
+	ret := &Value{}
 	ret.Name = dic.Name()
 	ret.Unit = dic.Unit()
 
-	dotIndex := strings.Index(dic.Format(), ".")
-	value := f.bcdToUint(buf, dic.Size())
+	dotIndex := strings.Index(dic.Format(protocol), ".")
+	value := bcdToUint(buf, dic.Size(protocol))
 	if dotIndex == -1 {
 		ret.Value = decimal.NewFromUint64(value)
 	} else {
-		exp := int32(dic.Size()*2 - dotIndex)
+		exp := int32(dic.Size(protocol)*2 - dotIndex)
 		ret.Value = decimal.New(int64(value), -exp)
 	}
 
 	return ret
 }
 
-func (f *Frame) CalcCS() {
-	f.CS = f.Start
+func (f *Frame) _CalcCS() (cs byte) {
+	cs = f.Start
 	for _, a := range f.Address {
-		f.CS += a
+		cs += a
 	}
-	f.CS += f.FrameStart
-	f.CS += byte(f.C)
-	f.CS += f.L
+	cs += f.AddrEnd
+
+	cs += byte(f.C)
+	cs += f.L
 	for _, d := range f.Data {
-		f.CS += d
+		cs += d
 	}
+
+	return cs
+}
+
+func (f *Frame) CalcCS() {
+	f.CS = f._CalcCS()
+}
+
+func (f *Frame) Bytes() (ret []byte) {
+	ret = append(ret, f.Start)
+	ret = append(ret, f.Address[:]...)
+	ret = append(ret, f.AddrEnd, byte(f.C), f.L)
+	ret = append(ret, f.Data...)
+	ret = append(ret, f.CS, f.End)
+	return ret
+}
+
+func (f *Frame) CheckStartError() error {
+	if f.Start != FrameStartByte {
+		return fmt.Errorf("invalid start byte: %x", f.Start)
+	}
+
+	if f.AddrEnd != FrameStartByte {
+		return fmt.Errorf("invalid frame start byte: %x", f.AddrEnd)
+	}
+
+	return nil
+}
+
+func (f *Frame) CheckEndError() error {
+	if f.CS != f._CalcCS() {
+		return errors.New("cs error")
+	}
+
+	if f.End != FrameEndByte {
+		return fmt.Errorf("invalid frame end byte: %x", f.End)
+	}
+
+	if f.C.HasError() {
+		if f.L == 1 {
+			return fmt.Errorf("frame has error: %d", f.Data[0])
+		} else {
+			return errors.New("frame has error, but data length not equals 1")
+		}
+	}
+
+	return nil
+}
+
+func NewReadFrame(addr string, dic DIC, protocol P) (*Frame, error) {
+	f := factory.New[Frame]()
+	f.C = NewCode(CRD)
+	if err := f.SetAddress(addr, false); err != nil {
+		return nil, err
+	}
+
+	f.Data = dic.Code(protocol)
+	f.L = byte(len(f.Data))
+	f.DataAddMask()
+	f.CalcCS()
+
+	return f, nil
+}
+
+func NewFrameByRespHeader(header []byte) *Frame {
+	if len(header) != FRAME_HEADER_LEN {
+		panic(errors.New("header buffer length is not equal to 10"))
+	}
+
+	f := &Frame{
+		Start:   header[0],
+		Address: [6]byte{header[1], header[2], header[3], header[4], header[5], header[6]},
+		AddrEnd: header[7],
+		C:       Code(header[8] & 0x7f),
+		L:       header[9],
+	}
+
+	return f
 }

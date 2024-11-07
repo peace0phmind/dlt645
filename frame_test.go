@@ -84,9 +84,8 @@ func TestFrame_bcd(t *testing.T) {
 
 	for _, tt := range tests {
 		t.Run(fmt.Sprintf("%d", tt.value), func(t *testing.T) {
-			frame := &Frame{}
-			assert.Equal(t, tt.buf, frame.uintToBcd(tt.value, len(tt.buf)))
-			assert.Equal(t, tt.value, frame.bcdToUint(tt.buf, len(tt.buf)))
+			assert.Equal(t, tt.buf, uintToBcd(tt.value, len(tt.buf)))
+			assert.Equal(t, tt.value, bcdToUint(tt.buf, len(tt.buf)))
 		})
 	}
 }
@@ -100,13 +99,13 @@ func TestFrame_GetValue(t *testing.T) {
 	tests := []struct {
 		buf              []byte
 		dic              DIC
-		exp              *DLT645Value
+		exp              *Value
 		expValueWithUnit string
 	}{
 		{
 			buf: []byte{0x78, 0x56, 0x34, 0x12},
 			dic: DICTotalActiveEnergy,
-			exp: &DLT645Value{
+			exp: &Value{
 				Name:  DICTotalActiveEnergy.Name(),
 				Unit:  DICTotalActiveEnergy.Unit(),
 				Value: MustNewFromString("123456.78"),
@@ -116,21 +115,71 @@ func TestFrame_GetValue(t *testing.T) {
 		{
 			buf: []byte{0x01, 0x23},
 			dic: DICPhaseAVoltage,
-			exp: &DLT645Value{
+			exp: &Value{
 				Name:  DICPhaseAVoltage.Name(),
 				Unit:  DICPhaseAVoltage.Unit(),
 				Value: MustNewFromString("230.1"),
 			},
 			expValueWithUnit: "230.1V",
 		},
+		{
+			buf: []byte{0x23, 0x01, 0x00},
+			dic: DICActiveConstant,
+			exp: &Value{
+				Name:  DICActiveConstant.Name(),
+				Unit:  DICActiveConstant.Unit(),
+				Value: MustNewFromString("123"),
+			},
+			expValueWithUnit: "123imp/kWh",
+		},
 	}
 
 	for _, tt := range tests {
 		t.Run(tt.exp.Name, func(t *testing.T) {
 			frame := &Frame{}
-			value := frame.GetValue(tt.buf, tt.dic)
+			value := frame.GetValue(tt.buf, tt.dic, PV2007)
 			assert.Equal(t, tt.exp, value)
 			assert.Equal(t, tt.expValueWithUnit, value.Value.String()+value.Unit)
+		})
+	}
+}
+
+func TestFrame_NewReadFrame(t *testing.T) {
+	tests := []struct {
+		addr     string
+		dic      DIC
+		protocol P
+		expBytes []byte
+		expErr   error
+	}{
+		{
+			addr:     "1234567890",
+			dic:      DICTotalActiveEnergy,
+			protocol: PV2007,
+			expBytes: []byte{0x68, 0x90, 0x78, 0x56, 0x34, 0x12, 0x0, 0x68, 0x11, 0x4, 0x33, 0x33, 0x33, 0x33, 0x55, 0x16},
+			expErr:   nil,
+		},
+		{
+			addr:     "12345678",
+			dic:      DICPhaseAVoltage,
+			protocol: PV2007,
+			expBytes: []byte{0x68, 0x78, 0x56, 0x34, 0x12, 0x0, 0x0, 0x68, 0x11, 0x4, 0x33, 0x34, 0x34, 0x35, 0xc9, 0x16},
+			expErr:   nil,
+		},
+		{
+			addr:     "1234567",
+			dic:      DICPhaseAVoltage,
+			protocol: PV1997,
+			expBytes: []byte{0x68, 0x67, 0x45, 0x23, 0x1, 0x0, 0x0, 0x68, 0x11, 0x2, 0x44, 0xe9, 0xe0, 0x16},
+			expErr:   nil,
+		},
+	}
+
+	for _, tt := range tests {
+		t.Run(tt.addr, func(t *testing.T) {
+			f, err := NewReadFrame(tt.addr, tt.dic, tt.protocol)
+			assert.Equal(t, tt.expErr, err)
+			assert.Equal(t, tt.expBytes, f.Bytes())
 		})
 	}
 }
