@@ -1,4 +1,4 @@
-module dlt645
+module github.com/peace0phmind/dlt645
 
 go 1.20
 
