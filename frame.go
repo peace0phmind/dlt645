@@ -178,9 +178,12 @@ func (f *Frame) CheckEndError() error {
 		return fmt.Errorf("invalid frame end byte: %x", f.End)
 	}
 
+	f.DataCleanMask()
+
 	if f.C.HasError() {
 		if f.L == 1 {
-			return fmt.Errorf("frame has error: %d", f.Data[0])
+			errCode := ErrorCode(f.Data[0])
+			return fmt.Errorf("frame has error: %s", errCode.Msg())
 		} else {
 			return errors.New("frame has error, but data length not equals 1")
 		}

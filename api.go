@@ -1,6 +1,9 @@
 package dlt645
 
-import "github.com/shopspring/decimal"
+import (
+	"fmt"
+	"github.com/shopspring/decimal"
+)
 
 type Value struct {
 	Name  string
@@ -8,8 +11,11 @@ type Value struct {
 	Value decimal.Decimal
 }
 
+func (v *Value) String() string {
+	return fmt.Sprintf("%s: %s%s", v.Name, v.Value, v.Unit)
+}
+
 type Client interface {
 	ReadAddress() (string, error)
-	Read(addr string, dic DIC) (*Value, error)
-	BatchRead(addr string, dics []DIC) ([]*Value, error)
+	Read(addr string, dic DIC) ([]*Value, error)
 }

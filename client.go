@@ -2,6 +2,7 @@ package dlt645
 
 import (
 	"bytes"
+	"errors"
 	"github.com/expgo/factory"
 	"github.com/shopspring/decimal"
 	"strings"
@@ -76,8 +77,6 @@ func (c *client) readFrame() (*Frame, error) {
 		return nil, err
 	}
 
-	f.DataCleanMask()
-
 	return f, nil
 }
 
@@ -101,7 +100,7 @@ func (c *client) ReadAddress() (string, error) {
 	return respFrame.GetAddress(), nil
 }
 
-func (c *client) Read(addr string, dic DIC) (*Value, error) {
+func (c *client) Read(addr string, dic DIC) ([]*Value, error) {
 	f, err := NewReadFrame(addr, dic, c.Protocol)
 	if err != nil {
 		return nil, err
@@ -116,26 +115,37 @@ func (c *client) Read(addr string, dic DIC) (*Value, error) {
 		return nil, err1
 	}
 
-	return c.getValue(respFrame.Data, dic), nil
+	return c.getValue(respFrame.Data, dic)
 }
 
-func (c *client) BatchRead(addr string, dics []DIC) ([]*Value, error) {
-	return nil, nil
-}
+func (c *client) getValue(buf []byte, dic DIC) (rets []*Value, err error) {
+	code := dic.Code(c.Protocol)
 
-func (c *client) getValue(buf []byte, dic DIC) *Value {
-	ret := &Value{}
-	ret.Name = dic.Name()
-	ret.Unit = dic.Unit()
-
-	dotIndex := strings.Index(dic.Format(c.Protocol), ".")
-	value := bcdToUint(buf, dic.Size(c.Protocol))
-	if dotIndex == -1 {
-		ret.Value = decimal.NewFromUint64(value)
-	} else {
-		exp := int32(dic.Size(c.Protocol)*2 - dotIndex)
-		ret.Value = decimal.New(int64(value), -exp)
+	if !bytes.Equal(buf[:len(code)], code) {
+		return nil, errors.New("dic code not equals")
 	}
 
-	return ret
+	buf = buf[len(code):]
+
+	_, dics := dic.CheckBlock(c.Protocol)
+
+	for _, vDIC := range dics {
+		v := &Value{}
+		v.Name = vDIC.Name()
+		v.Unit = vDIC.Unit()
+
+		dotIndex := strings.Index(vDIC.Format(c.Protocol), ".")
+		value := bcdToUint(buf, vDIC.Size(c.Protocol))
+		if dotIndex == -1 {
+			v.Value = decimal.NewFromUint64(value)
+		} else {
+			exp := int32(dic.Size(c.Protocol)*2 - dotIndex)
+			v.Value = decimal.New(int64(value), -exp)
+		}
+
+		rets = append(rets, v)
+		buf = buf[vDIC.Size(c.Protocol):]
+	}
+
+	return rets, nil
 }

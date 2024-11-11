@@ -63,14 +63,14 @@ func (c C) Value(protocol P) byte {
 /*
 ErrorCode
 
-	@Enum(old byte) {
-		RATE (0x40) = 0x40 // 费率数超
-		DAY  (0x20) = 0x20 // 日时段数超
-		YEAR (0x10) = 0x10 // 年时区数超
-		BR   (0x08) = 0x08 // 通信速率不能更改
-		PD   (0x04) = 0x04 // 密码错误/未授权
-		DATA (0x02) = 0x02 // 无请求数据
-		OTHER(0x01) = 0x01 // 其他错误
+	@Enum(msg string) {
+		RATE ("费率数超") 		= 0x40 // 费率数超
+		DAY  ("日时段数超") 		= 0x20 // 日时段数超
+		YEAR ("年时区数超") 		= 0x10 // 年时区数超
+		BR   ("通信速率不能更改") 	= 0x08 // 通信速率不能更改
+		PD   ("密码错误/未授权") 	= 0x04 // 密码错误/未授权
+		DATA ("无请求数据") 		= 0x02 // 无请求数据
+		OTHER("其他错误") 		= 0x01 // 其他错误
 	}
 */
 type ErrorCode byte
@@ -78,6 +78,7 @@ type ErrorCode byte
 /*
 DIC data identification code. the old is 1997 code, the val is 2007 code
 
+	@EnumConfig(Values)
 	@Enum(old uint16, oldFormat string, oldSize int, newFormat string, newSize int, unit string) {
 		// 电能量数据标识
 		TotalActiveEnergy             (0xFFFF, "", 0, "XXXXXX.XX", 4, "kWh")	= 0x00000000 // 组合有功总电能
@@ -175,5 +176,37 @@ func (dic DIC) Size(protocol P) int {
 			panic(fmt.Errorf("1997 unsupport %s size", dic.Name()))
 		}
 		return dic.OldSize()
+	}
+}
+
+func getDICs(dic DIC, bitSize int) (ret []DIC) {
+	prefix := dic.Val() >> bitSize
+	for _, v := range DICValues() {
+		if v.Val()>>bitSize == prefix && v != dic {
+			ret = append(ret, v)
+		}
+	}
+
+	return ret
+}
+
+// if dic code is block, then return true, else false.
+func (dic DIC) CheckBlock(protocol P) (isBlock bool, ret []DIC) {
+	if protocol == PV2007 {
+		if (dic.Val() & 0xFF) == 0xFF {
+			return true, getDICs(dic, 8)
+		}
+
+		if (dic.Val() >> 8 & 0xFF) == 0xFF {
+			return true, getDICs(dic, 16)
+		}
+
+		if (dic.Val() >> 16 & 0xFF) == 0xFF {
+			return true, getDICs(dic, 24)
+		}
+
+		return false, append([]DIC{}, dic)
+	} else {
+		return false, append([]DIC{}, dic)
 	}
 }

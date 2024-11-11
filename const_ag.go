@@ -739,6 +739,67 @@ func (x DIC) Val() uint32 {
 	return uint32(x)
 }
 
+var _DICValues = []DIC{
+	DICTotalActiveEnergy,
+	DICPositiveTotalActiveEnergy,
+	DICNegativeTotalActiveEnergy,
+	DICTotalReactiveEnergy1,
+	DICTotalReactiveEnergy2,
+	DICFirstQuadrantReactiveEnergy,
+	DICSecondQuadrantReactiveEnergy,
+	DICThirdQuadrantReactiveEnergy,
+	DICFourthQuadrantReactiveEnergy,
+	DICPositiveTotalApparentEnergy,
+	DICNegativeTotalApparentEnergy,
+	DICAssociatedTotalElectricEnergy,
+	DICPhaseAVoltage,
+	DICPhaseBVoltage,
+	DICPhaseCVoltage,
+	DICVoltage,
+	DICPhaseACurrent,
+	DICPhaseBCurrent,
+	DICPhaseCCurrent,
+	DICCurrent,
+	DICTotalActivePower,
+	DICPhaseAActivePower,
+	DICPhaseBActivePower,
+	DICPhaseCActivePower,
+	DICActivePower,
+	DICTotalReactivePower,
+	DICPhaseAReactivePower,
+	DICPhaseBReactivePower,
+	DICPhaseCReactivePower,
+	DICReactivePower,
+	DICTotalApparentPower,
+	DICPhaseAApparentPower,
+	DICPhaseBApparentPower,
+	DICPhaseCApparentPower,
+	DICApparentPower,
+	DICTotalPowerFactor,
+	DICPhaseAPowerFactor,
+	DICPhaseBPowerFactor,
+	DICPhaseCPowerFactor,
+	DICPowerFactor,
+	DICABLineVoltage,
+	DICBCLineVoltage,
+	DICCALineVoltage,
+	DICLineVoltage,
+	DICFrequency,
+	DICTotalOverCurrentCount,
+	DICTotalMeterResetCount,
+	DICMeterResetRecord,
+	DICDateTime,
+	DICTime,
+	DICAssetManagementCode,
+	DICActiveConstant,
+	DICReactiveConstant,
+}
+
+// DICValues returns a list of the values of DIC
+func DICValues() []DIC {
+	return _DICValues
+}
+
 // IsValid provides a quick way to determine if the typed value is
 // part of the allowed enumerated values
 func (x DIC) IsValid() bool {
@@ -837,22 +898,22 @@ func (x ErrorCode) Name() string {
 	return fmt.Sprintf("ErrorCode(%d).Name", x)
 }
 
-var _ErrorCodeMapOld = map[ErrorCode]uint8{
-	ErrorCodeRATE:  64,
-	ErrorCodeDAY:   32,
-	ErrorCodeYEAR:  16,
-	ErrorCodeBR:    8,
-	ErrorCodePD:    4,
-	ErrorCodeDATA:  2,
-	ErrorCodeOTHER: 1,
+var _ErrorCodeMapMsg = map[ErrorCode]string{
+	ErrorCodeRATE:  "费率数超",
+	ErrorCodeDAY:   "日时段数超",
+	ErrorCodeYEAR:  "年时区数超",
+	ErrorCodeBR:    "通信速率不能更改",
+	ErrorCodePD:    "密码错误/未授权",
+	ErrorCodeDATA:  "无请求数据",
+	ErrorCodeOTHER: "其他错误",
 }
 
-// Old is the attribute of ErrorCode.
-func (x ErrorCode) Old() uint8 {
-	if v, ok := _ErrorCodeMapOld[x]; ok {
+// Msg is the attribute of ErrorCode.
+func (x ErrorCode) Msg() string {
+	if v, ok := _ErrorCodeMapMsg[x]; ok {
 		return v
 	}
-	return 0
+	return fmt.Sprintf("ErrorCode(%d).Msg", x)
 }
 
 // Val is the attribute of ErrorCode.
