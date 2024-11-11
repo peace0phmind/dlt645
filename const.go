@@ -78,7 +78,7 @@ type ErrorCode byte
 /*
 DIC data identification code. the old is 1997 code, the val is 2007 code
 
-	@EnumConfig(Values)
+	@EnumConfig(noCase, Values)
 	@Enum(old uint16, oldFormat string, oldSize int, newFormat string, newSize int, unit string) {
 		// 电能量数据标识
 		TotalActiveEnergy             (0xFFFF, "", 0, "XXXXXX.XX", 4, "kWh")	= 0x00000000 // 组合有功总电能
