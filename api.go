@@ -9,6 +9,7 @@ type Value struct {
 }
 
 type Client interface {
+	ReadAddress() (string, error)
 	Read(addr string, dic DIC) (*Value, error)
 	BatchRead(addr string, dics []DIC) ([]*Value, error)
 }

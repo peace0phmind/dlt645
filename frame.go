@@ -14,10 +14,9 @@ const (
 	FRAME_HEADER_LEN   = 10
 	FrameStartByte     = 0x68
 	FrameEndByte       = 0x16
-)
 
-var (
-	PRE_BYTES = []byte{0xFE, 0xFE, 0xFE, 0xFE}
+	PRE_BYTE     byte = 0xFE
+	PRE_BYTE_LEN      = 4
 )
 
 type Code byte
@@ -205,18 +204,24 @@ func NewReadFrame(addr string, dic DIC, protocol P) (*Frame, error) {
 	return f, nil
 }
 
-func NewFrameByRespHeader(header []byte) *Frame {
-	if len(header) != FRAME_HEADER_LEN {
-		panic(errors.New("header buffer length is not equal to 10"))
+func NewFrameByRespHeader(header []byte) (*Frame, error) {
+	if len(header) != FRAME_HEADER_LEN+PRE_BYTE_LEN {
+		return nil, errors.New("header buffer length is not equal to 10")
+	}
+
+	for i := 0; i < PRE_BYTE_LEN; i++ {
+		if header[i] != PRE_BYTE {
+			return nil, errors.New("header buffer prefix is not equal to PRE_BYTE")
+		}
 	}
 
 	f := &Frame{
-		Start:   header[0],
-		Address: [6]byte{header[1], header[2], header[3], header[4], header[5], header[6]},
-		AddrEnd: header[7],
-		C:       Code(header[8] & 0x7f),
-		L:       header[9],
+		Start:   header[PRE_BYTE_LEN],
+		Address: [6]byte{header[PRE_BYTE_LEN+1], header[PRE_BYTE_LEN+2], header[PRE_BYTE_LEN+3], header[PRE_BYTE_LEN+4], header[PRE_BYTE_LEN+5], header[PRE_BYTE_LEN+6]},
+		AddrEnd: header[PRE_BYTE_LEN+7],
+		C:       Code(header[PRE_BYTE_LEN+8]),
+		L:       header[PRE_BYTE_LEN+9],
 	}
 
-	return f
+	return f, nil
 }

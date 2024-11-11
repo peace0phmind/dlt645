@@ -14,7 +14,7 @@ type TcpTransporter struct {
 
 func NewTcpTransport(addr string) *TcpTransporter {
 	return factory.NewBeforeInit[TcpTransporter](func(ret *TcpTransporter) {
-		ret.baseTransporter = baseTransporter{addr: addr}
+		ret.baseTransporter.addr = addr
 	})
 }
 

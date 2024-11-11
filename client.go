@@ -1,6 +1,8 @@
 package dlt645
 
 import (
+	"bytes"
+	"github.com/expgo/factory"
 	"github.com/shopspring/decimal"
 	"strings"
 )
@@ -17,14 +19,38 @@ func NewClient(transporter Transporter) Client {
 	}
 }
 
+func (c *client) writeFrame(f *Frame) error {
+	var buf bytes.Buffer
+
+	for i := 0; i < PRE_BYTE_LEN; i++ {
+		_ = buf.WriteByte(PRE_BYTE)
+	}
+
+	_, err := buf.Write(f.Bytes())
+	if err != nil {
+		return err
+	}
+
+	_, err = c.transporter.Write(buf.Bytes())
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
 func (c *client) readFrame() (*Frame, error) {
-	respBuf := make([]byte, FRAME_HEADER_LEN)
+	respBuf := make([]byte, FRAME_HEADER_LEN+PRE_BYTE_LEN)
 	_, err := c.transporter.Read(respBuf)
 	if err != nil {
 		return nil, err
 	}
 
-	f := NewFrameByRespHeader(respBuf)
+	f, err := NewFrameByRespHeader(respBuf)
+	if err != nil {
+		return nil, err
+	}
+
 	if err = f.CheckStartError(); err != nil {
 		return nil, err
 	}
@@ -55,15 +81,34 @@ func (c *client) readFrame() (*Frame, error) {
 	return f, nil
 }
 
+func (c *client) ReadAddress() (string, error) {
+	f := factory.New[Frame]()
+	f.C = NewCode(CRDA)
+	if err := f.SetAddress("", true); err != nil {
+		return "", err
+	}
+	f.CalcCS()
+
+	if err := c.writeFrame(f); err != nil {
+		return "", err
+	}
+
+	respFrame, err := c.readFrame()
+	if err != nil {
+		return "", err
+	}
+
+	return respFrame.GetAddress(), nil
+}
+
 func (c *client) Read(addr string, dic DIC) (*Value, error) {
 	f, err := NewReadFrame(addr, dic, c.Protocol)
 	if err != nil {
 		return nil, err
 	}
 
-	_, err = c.transporter.Write(f.Bytes())
-	if err != nil {
-		return nil, err
+	if err1 := c.writeFrame(f); err1 != nil {
+		return nil, err1
 	}
 
 	respFrame, err1 := c.readFrame()
