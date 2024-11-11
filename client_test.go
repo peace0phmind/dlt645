@@ -29,38 +29,44 @@ func TestTcpClient_Read(t *testing.T) {
 	err := transport.Open()
 	assert.NoError(t, err)
 
-	v, err := c.Read("240727263614", DICTotalActiveEnergy)
-	assert.NoError(t, err)
+	v := c.Read("240727263614", DICTotalActiveEnergy)
 	t.Logf("value: %+v", v)
 
-	v, err = c.Read("240727263614", DICPositiveTotalActiveEnergy)
-	assert.NoError(t, err)
+	v = c.Read("240727263614", DICPositiveTotalActiveEnergy)
 	t.Logf("value: %+v", v)
 
-	v, err = c.Read("240727263614", DICNegativeTotalActiveEnergy)
-	assert.NoError(t, err)
+	v = c.Read("240727263614", DICNegativeTotalActiveEnergy)
 	t.Logf("value: %+v", v)
 
-	v, err = c.Read("240727263614", DICVoltage)
-	assert.NoError(t, err)
+	v = c.Read("240727263614", DICVoltage)
 	t.Logf("value: %+v", v)
 
-	v, err = c.Read("240727263614", DICCurrent)
-	assert.NoError(t, err)
+	v = c.Read("240727263614", DICCurrent)
 	t.Logf("value: %+v", v)
 
-	v, err = c.Read("240727263614", DICActivePower)
-	assert.NoError(t, err)
+	v = c.Read("240727263614", DICActivePower)
 	t.Logf("value: %+v", v)
 
-	v, err = c.Read("240727263614", DICReactivePower)
-	assert.NoError(t, err)
+	v = c.Read("240727263614", DICReactivePower)
 	t.Logf("value: %+v", v)
 
-	v, err = c.Read("240727263614", DICFrequency)
-	assert.NoError(t, err)
+	v = c.Read("240727263614", DICFrequency)
 	t.Logf("value: %+v", v)
 
-	_, err = c.Read("240727263614", DICLineVoltage)
-	assert.EqualError(t, err, "frame has error: 无请求数据")
+	v = c.Read("240727263614", DICLineVoltage)
+	t.Logf("value: %+v", v)
+}
+
+func TestTcpClient_BatchRead(t *testing.T) {
+	transport := NewTcpTransport("127.0.0.1:3330")
+	defer transport.Close()
+
+	c := NewClient(transport)
+
+	err := transport.Open()
+	assert.NoError(t, err)
+
+	v := c.BatchRead("240727263614", []DIC{DICTotalActiveEnergy, DICPositiveTotalActiveEnergy, DICNegativeTotalActiveEnergy,
+		DICVoltage, DICCurrent, DICActivePower, DICReactivePower, DICFrequency, DICLineVoltage})
+	t.Logf("value: %+v", v)
 }

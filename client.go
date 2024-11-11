@@ -100,33 +100,14 @@ func (c *client) ReadAddress() (string, error) {
 	return respFrame.GetAddress(), nil
 }
 
-func (c *client) Read(addr string, dic DIC) ([]*Value, error) {
-	f, err := NewReadFrame(addr, dic, c.Protocol)
-	if err != nil {
-		return nil, err
-	}
-
-	if err1 := c.writeFrame(f); err1 != nil {
-		return nil, err1
-	}
-
-	respFrame, err1 := c.readFrame()
-	if err1 != nil {
-		return nil, err1
-	}
-
-	return c.getValue(respFrame.Data, dic)
-}
-
-func (c *client) getValue(buf []byte, dic DIC) (rets []*Value, err error) {
+func (c *client) getValue(buf []byte, dic DIC) (rets []*Value) {
 	code := dic.Code(c.Protocol)
 
 	if !bytes.Equal(buf[:len(code)], code) {
-		return nil, errors.New("dic code not equals")
+		return c.getErrorValues(dic, errors.New("dic code not equals"))
 	}
 
 	buf = buf[len(code):]
-
 	_, dics := dic.CheckBlock(c.Protocol)
 
 	for _, vDIC := range dics {
@@ -147,5 +128,43 @@ func (c *client) getValue(buf []byte, dic DIC) (rets []*Value, err error) {
 		buf = buf[vDIC.Size(c.Protocol):]
 	}
 
-	return rets, nil
+	return rets
+}
+
+func (c *client) getErrorValues(dic DIC, err error) (rets []*Value) {
+	_, dics := dic.CheckBlock(c.Protocol)
+	for _, vDIC := range dics {
+		rets = append(rets, &Value{
+			Name: vDIC.Name(),
+			Unit: vDIC.Unit(),
+			Err:  err,
+		})
+	}
+
+	return rets
+}
+
+func (c *client) Read(addr string, dic DIC) []*Value {
+	f, err := NewReadFrame(addr, dic, c.Protocol)
+	if err != nil {
+		return c.getErrorValues(dic, err)
+	}
+
+	if err1 := c.writeFrame(f); err1 != nil {
+		return c.getErrorValues(dic, err1)
+	}
+
+	respFrame, err1 := c.readFrame()
+	if err1 != nil {
+		return c.getErrorValues(dic, err1)
+	}
+
+	return c.getValue(respFrame.Data, dic)
+}
+
+func (c *client) BatchRead(addr string, dics []DIC) (values []*Value) {
+	for _, dic := range dics {
+		values = append(values, c.Read(addr, dic)...)
+	}
+	return values
 }
