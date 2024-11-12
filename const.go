@@ -3,6 +3,7 @@ package dlt645
 import (
 	"encoding/binary"
 	"fmt"
+	"strings"
 )
 
 // @EnumConfig(noCamel)
@@ -176,6 +177,15 @@ func (dic DIC) Size(protocol P) int {
 			panic(fmt.Errorf("1997 unsupport %s size", dic.Name()))
 		}
 		return dic.OldSize()
+	}
+}
+
+func (dic DIC) Scale(protocol P) int {
+	dotIndex := strings.Index(dic.Format(protocol), ".")
+	if dotIndex == -1 {
+		return 0
+	} else {
+		return dic.Size(protocol)*2 - dotIndex
 	}
 }
 

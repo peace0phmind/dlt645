@@ -5,7 +5,6 @@ import (
 	"errors"
 	"github.com/expgo/factory"
 	"github.com/shopspring/decimal"
-	"strings"
 )
 
 type client struct {
@@ -115,13 +114,12 @@ func (c *client) getValue(buf []byte, dic DIC) (rets []*Value) {
 		v.Name = vDIC.Name()
 		v.Unit = vDIC.Unit()
 
-		dotIndex := strings.Index(vDIC.Format(c.Protocol), ".")
+		scale := vDIC.Scale(c.Protocol)
 		value := bcdToUint(buf, vDIC.Size(c.Protocol))
-		if dotIndex == -1 {
+		if scale == 0 {
 			v.Value = decimal.NewFromUint64(value)
 		} else {
-			exp := int32(dic.Size(c.Protocol)*2 - dotIndex)
-			v.Value = decimal.New(int64(value), -exp)
+			v.Value = decimal.New(int64(value), -int32(scale))
 		}
 
 		rets = append(rets, v)
