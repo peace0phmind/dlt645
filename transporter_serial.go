@@ -15,7 +15,7 @@ type SerialTransporter struct {
 
 func NewSerialTransport(conf *serial.Config) *SerialTransporter {
 	return factory.NewBeforeInit[SerialTransporter](func(ret *SerialTransporter) {
-		ret.baseTransporter = baseTransporter{addr: conf.Name}
+		ret.baseTransporter.addr = conf.Name
 		ret.conf = conf
 	})
 }
