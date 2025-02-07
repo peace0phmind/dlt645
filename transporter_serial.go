@@ -31,13 +31,14 @@ func (t *SerialTransporter) Open() (err error) {
 
 	t.setState(StateConnecting, nil)
 
-	t.port, err = serial.OpenPort(t.conf)
+	port, err := serial.OpenPort(t.conf)
 	if err != nil {
 		t.L.Warnf("Open serial %s failed: %v", t.conf.Name, err)
 		t.setState(StateDisconnected, err)
 		return err
 	}
 
+	t.port = port
 	t.setState(StateConnected, nil)
 
 	return err
